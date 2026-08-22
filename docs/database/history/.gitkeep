@@ -1,0 +1,3 @@
+# Snapshots versionados do schema. Cada mudança arquiva aqui o estado anterior:
+# schema-v000-YYYY-MM-DD.md, schema-v001-YYYY-MM-DD.md, ...
+# O estado atual fica em ../current.md.

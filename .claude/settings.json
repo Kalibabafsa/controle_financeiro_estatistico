@@ -1,0 +1,37 @@
+{
+  "$comment": "Permissões do Claude Code. NUNCA coloque segredos aqui. Segredos vão em .env (ignorado pelo git).",
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Bash(npm ci:*)",
+      "Bash(npm test:*)",
+      "Bash(npm audit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npx vitest:*)",
+      "Bash(npx playwright:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)",
+      "Bash(git config core.hooksPath:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh workflow:*)",
+      "Bash(gh run:*)"
+    ],
+    "deny": [
+      "Bash(git add -A:*)",
+      "Bash(git add .:*)",
+      "Read(.env)",
+      "Read(.env.*)"
+    ]
+  }
+}

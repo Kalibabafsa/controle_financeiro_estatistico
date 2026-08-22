@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Hook de pré-commit: garante que mudança de schema venha acompanhada da doc do banco.
+# Ativado via: git config core.hooksPath githooks   (feito pelo /iniciar-projeto)
+#
+# Regra: se algum arquivo de schema/migration está no commit, então
+# docs/database/current.md TAMBÉM precisa estar. Senão, bloqueia.
+
+set -euo pipefail
+
+staged="$(git diff --cached --name-only)"
+
+# Padrões que indicam alteração de schema/banco
+schema_changed="$(echo "$staged" | grep -E 'schema\.prisma|/migrations/|^database/' || true)"
+
+if [ -n "$schema_changed" ]; then
+  doc_changed="$(echo "$staged" | grep -E 'docs/database/current\.md' || true)"
+  if [ -z "$doc_changed" ]; then
+    echo "----------------------------------------------------------------"
+    echo "  COMMIT BLOQUEADO: o schema do banco mudou, mas a documentação"
+    echo "  não foi atualizada."
+    echo ""
+    echo "  Arquivos de schema/migration neste commit:"
+    echo "$schema_changed" | sed 's/^/    - /'
+    echo ""
+    echo "  Rode /documentar-banco (ou atualize docs/database/current.md,"
+    echo "  arquive o estado anterior em docs/database/history/ e registre"
+    echo "  no CHANGELOG.md) e inclua no commit."
+    echo "----------------------------------------------------------------"
+    exit 1
+  fi
+fi
+
+exit 0
