@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entrar · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            50: '#EAF0F5',
+            100: '#CBDCE8',
+            200: '#9CB9D0',
+            400: '#1E4E77',
+            500: '#123A5C',
+            600: '#0A2540',
+            700: '#081D33',
+            900: '#051220',
+          },
+          teal: {
+            50: '#E6F7F5',
+            100: '#C0EDE9',
+            200: '#8EDDD6',
+            400: '#2BC2B7',
+            500: '#1AA79E',
+            600: '#158D85',
+            700: '#0F6E68',
+          },
+          sun: {
+            50: '#FEF6E7',
+            100: '#FCE8C2',
+            300: '#F6C868',
+            400: '#F2B441',
+            500: '#E8A33D',
+          },
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed left-4 top-4 z-50 flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa do protótipo
+</a>
+
+<div class="flex min-h-screen flex-col lg:flex-row">
+
+  <!-- Painel de identidade (hero) -->
+  <div class="relative overflow-hidden bg-gradient-to-br from-navy-600 via-navy-600 to-teal-600 px-6 py-12 text-white lg:flex lg:w-1/2 lg:flex-col lg:justify-between lg:px-16 lg:py-16">
+    <div class="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-sun-400/20 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-teal-300/20 blur-3xl"></div>
+
+    <div class="relative z-10 mx-auto max-w-sm lg:mx-0">
+      <div class="flex items-center gap-3">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl backdrop-blur-sm">⚽</div>
+        <div>
+          <p class="font-display text-2xl font-extrabold tracking-tight">KALI BABA</p>
+          <p class="text-xs font-medium uppercase tracking-widest text-teal-100">Associação Kalibaba</p>
+        </div>
+      </div>
+
+      <div class="mt-10 lg:mt-16">
+        <h1 class="font-display text-3xl font-bold leading-tight lg:text-4xl">Futebol de 7,<br />prestação de contas<br />sem complicação.</h1>
+        <p class="mt-4 max-w-sm text-sm text-teal-50/90">Controle de mensalidades, presença, times e estatísticas do baba — tudo em um só lugar.</p>
+      </div>
+
+      <div class="mt-10 flex items-center gap-4 text-2xl">
+        <span title="Toda semana">🌴</span>
+        <span title="O baba">⚽</span>
+        <span title="Confraternização">🍻</span>
+        <span title="Sol de domingo">☀️</span>
+      </div>
+
+      <div class="mt-10 border-t border-white/20 pt-4 text-xs text-teal-100/80">
+        <p>⏰ Todo domingo, 8h da manhã</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Painel do formulário -->
+  <div class="flex flex-1 items-center justify-center px-6 py-12 lg:py-16">
+    <div class="w-full max-w-sm">
+      <div class="mb-8">
+        <h2 class="font-display text-2xl font-bold text-navy-600">Entrar</h2>
+        <p class="mt-1 text-sm text-slate-500">Acesse sua conta para continuar</p>
+      </div>
+
+      <!-- Alerta de erro (estado, oculto por padrão) -->
+      <div id="login-error" class="mb-4 hidden items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+        <i data-lucide="alert-triangle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+        <div>
+          <p class="font-medium">Não foi possível entrar</p>
+          <p>E-mail ou senha inválidos. Tente novamente.</p>
+        </div>
+      </div>
+
+      <form class="space-y-4" onsubmit="return false;">
+        <div>
+          <label for="email" class="mb-1.5 block text-sm font-medium text-slate-700">E-mail</label>
+          <div class="relative">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <i data-lucide="mail" class="h-5 w-5"></i>
+            </span>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="voce@email.com"
+              class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="mb-1.5 block text-sm font-medium text-slate-700">Senha</label>
+          <div class="relative">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <i data-lucide="lock" class="h-5 w-5"></i>
+            </span>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••"
+              class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-800 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+            <button type="button" id="toggle-password" aria-label="Mostrar senha" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-600">
+              <i id="eye-icon" data-lucide="eye" class="h-5 w-5"></i>
+              <i id="eye-slash-icon" data-lucide="eye-off" class="hidden h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 text-slate-600">
+            <input type="checkbox" class="h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            Lembrar de mim
+          </label>
+          <a href="recuperar-senha.html" class="font-medium text-teal-600 hover:text-teal-700">Esqueci minha senha</a>
+        </div>
+
+        <button id="submit-btn" type="submit" class="flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-3 font-display text-sm font-semibold text-white transition hover:bg-navy-700 focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70">
+          <span id="submit-label">Entrar</span>
+          <i id="submit-spinner" data-lucide="loader-2" class="hidden h-4 w-4 animate-spin"></i>
+        </button>
+      </form>
+
+      <p class="mt-6 text-center text-xs text-slate-400">Sistema Kalibaba © 2026 — Associação Kalibaba</p>
+
+      <!-- Simulador de estados (apenas no protótipo, para revisão de UX) -->
+      <div class="mt-10 rounded-xl border border-dashed border-slate-300 p-3 text-xs text-slate-400">
+        <p class="mb-2 font-medium text-slate-500">Protótipo — simular estados do formulário:</p>
+        <div class="flex gap-2">
+          <button id="state-normal" class="rounded-full border border-slate-300 px-3 py-1 hover:border-navy-400 hover:text-navy-600">Normal</button>
+          <button id="state-loading" class="rounded-full border border-slate-300 px-3 py-1 hover:border-navy-400 hover:text-navy-600">Carregando</button>
+          <button id="state-error" class="rounded-full border border-slate-300 px-3 py-1 hover:border-navy-400 hover:text-navy-600">Erro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  // Alternar visibilidade da senha
+  const pwdInput = document.getElementById('password');
+  const toggleBtn = document.getElementById('toggle-password');
+  const eyeIcon = document.getElementById('eye-icon');
+  const eyeSlashIcon = document.getElementById('eye-slash-icon');
+  toggleBtn.addEventListener('click', () => {
+    const isPassword = pwdInput.type === 'password';
+    pwdInput.type = isPassword ? 'text' : 'password';
+    eyeIcon.classList.toggle('hidden', isPassword);
+    eyeSlashIcon.classList.toggle('hidden', !isPassword);
+  });
+
+  // Simulador de estados (apenas ilustrativo para o protótipo)
+  const errorBox = document.getElementById('login-error');
+  const submitBtn = document.getElementById('submit-btn');
+  const submitLabel = document.getElementById('submit-label');
+  const submitSpinner = document.getElementById('submit-spinner');
+
+  function setState(state) {
+    errorBox.classList.add('hidden');
+    errorBox.classList.remove('flex');
+    submitBtn.disabled = false;
+    submitSpinner.classList.add('hidden');
+    submitLabel.textContent = 'Entrar';
+    if (state === 'error') {
+      errorBox.classList.remove('hidden');
+      errorBox.classList.add('flex');
+    } else if (state === 'loading') {
+      submitBtn.disabled = true;
+      submitSpinner.classList.remove('hidden');
+      submitLabel.textContent = 'Entrando...';
+    }
+  }
+  document.getElementById('state-normal').addEventListener('click', () => setState('normal'));
+  document.getElementById('state-loading').addEventListener('click', () => setState('loading'));
+  document.getElementById('state-error').addEventListener('click', () => setState('error'));
+</script>
+
+</body>
+</html>

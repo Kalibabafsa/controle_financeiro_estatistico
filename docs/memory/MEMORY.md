@@ -3,8 +3,8 @@
 > **Arquivo curto e barato de ler.** É a PRIMEIRA coisa carregada ao retomar o trabalho (`/retomar`). Mantenha-o enxuto (≈ até 40 linhas): só ponteiros e o essencial. O detalhe fica nos arquivos linkados — leia-os só quando precisar.
 
 ## Estado atual
-- **Fase do fluxo:** `/prototipar` — entrevista de design em andamento (paleta de cores proposta, aguardando validação do usuário); nenhuma tela criada ainda.
-- **Última sessão:** 2026-08-22 → `sessions/2026-08-22.md`
+- **Fase do fluxo:** `/prototipar` — 15/26 telas prontas e aprovadas em `prototipo/` (9 do sócio completas + dashboard financeiro, sócios e convidados do diretor). Restam ~11 telas do diretor.
+- **Última sessão:** 2026-08-24 → `sessions/2026-08-24.md`
 - **Versão do banco:** v000 (sem schema ainda) → `../database/current.md`
 - **CI:** não testado ainda (sem código para rodar)
 
@@ -23,8 +23,8 @@
 - Saldo é cumulativo entre meses (caixa corrente único).
 - Relatório mensal "Prestação de Contas" em PDF é obrigatório no MVP.
 - Pix: meta é integrar API do Banco Inter (webhook), com confirmação manual como fallback — a confirmar em `/arquitetar`.
-- Identidade visual: estilo tropical/praiano/descontraído (inspirado no relatório real do clube) em todo o sistema, não só em acentos.
-- Ainda não há nenhum commit no repositório git.
+- Identidade visual: estilo tropical/praiano/descontraído (inspirado no relatório real do clube) em todo o sistema, não só em acentos. Paleta navy/teal/amarelo-sol validada; tipografia Poppins+Inter; ícones Lucide (padrão oficial). PDF de Prestação de Contas segue identidade sóbria do sistema, não o relatório físico antigo.
+- Ainda não há nenhum commit novo além de `f217f27`; `gh` CLI instalado mas não autenticado; repo remoto não confirmado.
 
 ## Como retomar (protocolo)
 1. Ler este `MEMORY.md`.

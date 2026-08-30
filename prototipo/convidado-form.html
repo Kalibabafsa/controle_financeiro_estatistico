@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Editar Convidado · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-72 lg:flex-shrink-0 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Painel do diretor</p>
+      </div>
+    </div>
+
+    <nav class="mt-8 flex flex-1 flex-col gap-5">
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+        <a href="dashboard-financeiro.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          Dashboard Financeiro
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+        <div class="flex flex-col gap-1">
+          <a href="lancamento-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="credit-card" class="h-5 w-5"></i>
+            Lançamento de Mensalidades
+          </a>
+          <a href="lancamento-convidado.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="banknote" class="h-5 w-5"></i>
+            Pagamento de Convidado
+          </a>
+          <a href="despesas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="receipt" class="h-5 w-5"></i>
+            Gestão de Despesas
+          </a>
+          <a href="categorias.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="tags" class="h-5 w-5"></i>
+            Gestão de Categorias
+          </a>
+          <a href="inadimplencia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-x" class="h-5 w-5"></i>
+            Gestão de Inadimplência
+          </a>
+          <a href="prestacao-contas-geracao.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Prestação de Contas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+        <div class="flex flex-col gap-1">
+          <a href="socios-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            Sócios
+          </a>
+          <a href="convidados-lista.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+            <i data-lucide="user-plus" class="h-5 w-5"></i>
+            Convidados
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+        <div class="flex flex-col gap-1">
+          <a href="baba-dia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+            Baba do Dia
+          </a>
+          <a href="sorteio-times.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shuffle" class="h-5 w-5"></i>
+            Sorteio de Times
+          </a>
+          <a href="gols-cartoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+            Gols e Cartões
+          </a>
+          <a href="suspensoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shield-alert" class="h-5 w-5"></i>
+            Suspensões Ativas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+        <a href="configuracoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          Configurações Gerais
+        </a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <a href="convidados-lista.html" aria-label="Voltar" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="arrow-left" class="h-5 w-5"></i>
+      </a>
+      <span class="font-display text-sm font-bold text-navy-600">Editar Convidado</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <a href="convidados-lista.html" class="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-navy-600">
+          <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+          Voltar para Convidados
+        </a>
+        <h1 class="mt-1 font-display text-xl font-bold text-navy-600">Editar Convidado</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">CD</div>
+    </header>
+
+    <main class="mx-auto max-w-2xl px-4 py-5 lg:px-8 lg:py-8">
+
+      <!-- Alerta de sucesso ao salvar (oculto por padrão) -->
+      <div id="save-success" class="mb-4 hidden items-start gap-2 rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-700" role="status">
+        <i data-lucide="check-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+        <p class="font-medium">Dados do convidado atualizados com sucesso.</p>
+      </div>
+
+      <!-- Dados do convidado -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Dados do convidado</p>
+        <p class="mt-1 text-xs text-slate-400">Cadastro simplificado — convidados não têm login no sistema.</p>
+
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label for="nome" class="mb-1.5 block text-sm font-medium text-slate-700">Nome completo</label>
+            <input id="nome" type="text" value="Marcelo Andrade" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div>
+            <label for="telefone" class="mb-1.5 block text-sm font-medium text-slate-700">Telefone <span class="font-normal text-slate-400">(opcional)</span></label>
+            <input id="telefone" type="tel" value="(11) 90000-1111" placeholder="(11) 90000-0000" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div>
+            <label for="convidado-por" class="mb-1.5 block text-sm font-medium text-slate-700">Convidado por <span class="font-normal text-slate-400">(opcional)</span></label>
+            <select id="convidado-por" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+              <option value="">Nenhum sócio específico</option>
+              <option selected>João Pedro</option>
+              <option>Rafael Silva</option>
+              <option>Fernando Melo</option>
+              <option>Bruno Costa</option>
+              <option>Carlos Eduardo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Histórico de participações -->
+      <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Histórico de participações</p>
+        <p class="mt-1 text-xs text-slate-400">Babas em que este convidado esteve presente. Convidados não entram nos rankings de temporada.</p>
+        <div class="mt-4 divide-y divide-slate-100">
+          <div class="flex items-center justify-between py-2.5">
+            <p class="text-sm text-slate-600">Domingo, 23/08/2026</p>
+            <span class="text-xs text-slate-400">R$ 30,00 · Pix</span>
+          </div>
+          <div class="flex items-center justify-between py-2.5">
+            <p class="text-sm text-slate-600">Domingo, 09/08/2026</p>
+            <span class="text-xs text-slate-400">R$ 30,00 · Dinheiro</span>
+          </div>
+          <div class="flex items-center justify-between py-2.5">
+            <p class="text-sm text-slate-600">Domingo, 26/07/2026</p>
+            <span class="text-xs text-slate-400">R$ 30,00 · Pix</span>
+          </div>
+          <div class="flex items-center justify-between py-2.5">
+            <p class="text-sm text-slate-600">Domingo, 12/07/2026</p>
+            <span class="text-xs text-slate-400">R$ 30,00 · Pix</span>
+          </div>
+          <div class="flex items-center justify-between py-2.5">
+            <p class="text-sm text-slate-600">Domingo, 28/06/2026</p>
+            <span class="text-xs text-slate-400">R$ 30,00 · Dinheiro</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+        <button id="delete-btn" type="button" class="flex items-center justify-center gap-2 rounded-full border border-red-200 px-6 py-2.5 font-display text-sm font-semibold text-red-600 hover:bg-red-50">
+          <i data-lucide="trash-2" class="h-4 w-4"></i>
+          Remover contato
+        </button>
+        <div class="flex flex-col-reverse gap-3 sm:flex-row">
+          <a href="convidados-lista.html" class="flex items-center justify-center rounded-full border border-slate-300 px-6 py-2.5 font-display text-sm font-semibold text-slate-600 hover:bg-slate-50">
+            Cancelar
+          </a>
+          <button id="save-btn" type="button" class="flex items-center justify-center gap-2 rounded-full bg-navy-600 px-6 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700">
+            Salvar alterações
+          </button>
+        </div>
+      </div>
+
+      <p class="mt-4 flex items-center gap-1.5 text-xs text-slate-400">
+        <i data-lucide="info" class="h-3.5 w-3.5"></i>
+        "Remover contato" apaga apenas nome/telefone (LGPD); o histórico financeiro do convidado é preservado de forma anônima para a prestação de contas.
+      </p>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const saveSuccess = document.getElementById('save-success');
+  document.getElementById('save-btn').addEventListener('click', () => {
+    saveSuccess.classList.remove('hidden');
+    saveSuccess.classList.add('flex');
+    setTimeout(() => {
+      saveSuccess.classList.add('hidden');
+      saveSuccess.classList.remove('flex');
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rankings / Estatísticas · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-64 lg:flex-shrink-0 lg:flex-col lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Área do sócio</p>
+      </div>
+    </div>
+    <nav class="mt-8 flex flex-1 flex-col gap-1">
+      <a href="home-socio.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="home" class="h-5 w-5"></i>
+        Início
+      </a>
+      <a href="situacao-financeira.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="wallet" class="h-5 w-5"></i>
+        Minha Situação Financeira
+      </a>
+      <a href="pagar-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="credit-card" class="h-5 w-5"></i>
+        Pagar Mensalidade
+      </a>
+      <a href="proximo-baba.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="calendar" class="h-5 w-5"></i>
+        Próximo Baba
+      </a>
+      <a href="rankings.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+        <i data-lucide="trophy" class="h-5 w-5"></i>
+        Rankings / Estatísticas
+      </a>
+      <a href="prestacao-contas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="file-text" class="h-5 w-5"></i>
+        Prestação de Contas
+      </a>
+      <a href="meu-perfil.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="user" class="h-5 w-5"></i>
+        Meu Perfil
+      </a>
+    </nav>
+    <a href="login.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1 pb-24 lg:pb-0">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <a href="home-socio.html" aria-label="Voltar" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="arrow-left" class="h-5 w-5"></i>
+      </a>
+      <span class="font-display text-sm font-bold text-navy-600">Rankings</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Futebol</p>
+        <h1 class="font-display text-xl font-bold text-navy-600">Rankings / Estatísticas</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">RS</div>
+    </header>
+
+    <main class="mx-auto max-w-2xl px-4 py-5 lg:max-w-3xl lg:px-8 lg:py-8">
+
+      <div class="mb-4 flex items-center justify-between">
+        <p class="text-sm text-slate-500 lg:hidden">Temporada 2026</p>
+        <span class="hidden lg:block"></span>
+        <select class="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+          <option>Temporada 2026</option>
+          <option>Temporada 2025</option>
+        </select>
+      </div>
+
+      <!-- Abas -->
+      <div class="flex gap-2 rounded-full bg-slate-100 p-1">
+        <button id="tab-artilheiros" class="tab-btn flex-1 rounded-full px-3 py-2 text-xs font-semibold text-white transition">⚽ Artilheiros</button>
+        <button id="tab-cartoes" class="tab-btn flex-1 rounded-full px-3 py-2 text-xs font-semibold text-slate-500 transition">🟨 Cartões</button>
+        <button id="tab-presenca" class="tab-btn flex-1 rounded-full px-3 py-2 text-xs font-semibold text-slate-500 transition">📅 Presença</button>
+      </div>
+
+      <!-- Painel: Artilheiros -->
+      <div id="panel-artilheiros" class="mt-4 divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-sun-400 text-xs font-bold text-white">1</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">FM</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Fernando Melo</p>
+          <p class="font-display text-sm font-bold text-navy-600">18 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-300 text-xs font-bold text-white">2</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">GP</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Gustavo Pires</p>
+          <p class="font-display text-sm font-bold text-navy-600">15 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-amber-700 text-xs font-bold text-white">3</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">JP</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">João Pedro</p>
+          <p class="font-display text-sm font-bold text-navy-600">13 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-500">4</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">CE</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Carlos Eduardo</p>
+          <p class="font-display text-sm font-bold text-slate-600">11 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-500">5</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">BC</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Bruno Costa</p>
+          <p class="font-display text-sm font-bold text-slate-600">9 gols</p>
+        </div>
+        <div class="flex items-center gap-3 bg-teal-50/60 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-500">6</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-600 font-display text-xs font-bold text-white">RS</div>
+          <p class="flex-1 text-sm font-semibold text-teal-700">Rafael Silva <span class="ml-1 rounded-full bg-teal-100 px-1.5 py-0.5 text-[10px] font-semibold">Você</span></p>
+          <p class="font-display text-sm font-bold text-teal-700">8 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-500">7</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">DR</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Diego Ramos</p>
+          <p class="font-display text-sm font-bold text-slate-600">7 gols</p>
+        </div>
+        <div class="flex items-center gap-3 px-4 py-3">
+          <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-500">8</span>
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">LF</div>
+          <p class="flex-1 text-sm font-medium text-slate-800">Leonardo Faria</p>
+          <p class="font-display text-sm font-bold text-slate-600">6 gols</p>
+        </div>
+      </div>
+
+      <!-- Painel: Cartões -->
+      <div id="panel-cartoes" class="mt-4 hidden divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="flex items-center gap-2 px-4 pb-2 pt-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
+          <p class="flex-1">Jogador</p>
+          <p class="w-8 text-center">🟨</p>
+          <p class="w-8 text-center">🟦</p>
+          <p class="w-8 text-center">🟥</p>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-3">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">DM</div>
+            <p class="text-sm font-medium text-slate-800">Daniel Moreira</p>
+          </div>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">2</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">2</p>
+          <p class="w-8 text-center text-sm font-bold text-red-600">1</p>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-3">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">VR</div>
+            <p class="text-sm font-medium text-slate-800">Vinícius Rocha</p>
+          </div>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">3</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">0</p>
+          <p class="w-8 text-center text-sm font-bold text-red-600">1</p>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-3">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">BC</div>
+            <p class="text-sm font-medium text-slate-800">Bruno Costa</p>
+          </div>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">4</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">1</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-400">0</p>
+        </div>
+        <div class="flex items-center gap-2 px-4 py-3">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">RC</div>
+            <p class="text-sm font-medium text-slate-800">Rodrigo Castro</p>
+          </div>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">1</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">3</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-400">0</p>
+        </div>
+        <div class="flex items-center gap-2 bg-teal-50/60 px-4 py-3">
+          <div class="flex flex-1 items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-600 font-display text-xs font-bold text-white">RS</div>
+            <p class="text-sm font-semibold text-teal-700">Rafael Silva <span class="ml-1 rounded-full bg-teal-100 px-1.5 py-0.5 text-[10px] font-semibold">Você</span></p>
+          </div>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">2</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-700">0</p>
+          <p class="w-8 text-center text-sm font-semibold text-slate-400">0</p>
+        </div>
+      </div>
+
+      <!-- Painel: Presença -->
+      <div id="panel-presenca" class="mt-4 hidden divide-y divide-slate-100 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">JP</div>
+            <p class="flex-1 text-sm font-medium text-slate-800">João Pedro</p>
+            <p class="font-display text-sm font-bold text-navy-600">92%</p>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full rounded-full bg-teal-500" style="width: 92%"></div>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-400">23 de 25 babas</p>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">CE</div>
+            <p class="flex-1 text-sm font-medium text-slate-800">Carlos Eduardo</p>
+            <p class="font-display text-sm font-bold text-slate-600">88%</p>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full rounded-full bg-teal-500" style="width: 88%"></div>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-400">22 de 25 babas</p>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">FM</div>
+            <p class="flex-1 text-sm font-medium text-slate-800">Fernando Melo</p>
+            <p class="font-display text-sm font-bold text-slate-600">84%</p>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full rounded-full bg-teal-500" style="width: 84%"></div>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-400">21 de 25 babas</p>
+        </div>
+        <div class="bg-teal-50/60 px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-600 font-display text-xs font-bold text-white">RS</div>
+            <p class="flex-1 text-sm font-semibold text-teal-700">Rafael Silva <span class="ml-1 rounded-full bg-teal-100 px-1.5 py-0.5 text-[10px] font-semibold">Você</span></p>
+            <p class="font-display text-sm font-bold text-teal-700">80%</p>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white">
+            <div class="h-full rounded-full bg-teal-600" style="width: 80%"></div>
+          </div>
+          <p class="mt-1 text-[11px] text-teal-600/80">20 de 25 babas</p>
+        </div>
+        <div class="px-4 py-3">
+          <div class="flex items-center gap-3">
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-xs font-bold text-slate-500">GP</div>
+            <p class="flex-1 text-sm font-medium text-slate-800">Gustavo Pires</p>
+            <p class="font-display text-sm font-bold text-slate-600">76%</p>
+          </div>
+          <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full rounded-full bg-teal-500" style="width: 76%"></div>
+          </div>
+          <p class="mt-1 text-[11px] text-slate-400">19 de 25 babas</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Barra de navegação inferior (mobile) -->
+<nav class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2 lg:hidden">
+  <a href="home-socio.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="home" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Início</span>
+  </a>
+  <a href="situacao-financeira.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="wallet" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Financeiro</span>
+  </a>
+  <a href="proximo-baba.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="calendar" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Baba</span>
+  </a>
+  <a href="rankings.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-navy-600">
+    <i data-lucide="trophy" class="h-5 w-5"></i>
+    <span class="text-[10px] font-semibold">Rankings</span>
+  </a>
+  <a href="meu-perfil.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="user" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Perfil</span>
+  </a>
+</nav>
+
+<script>
+  lucide.createIcons();
+
+  const tabs = {
+    artilheiros: { btn: document.getElementById('tab-artilheiros'), panel: document.getElementById('panel-artilheiros') },
+    cartoes: { btn: document.getElementById('tab-cartoes'), panel: document.getElementById('panel-cartoes') },
+    presenca: { btn: document.getElementById('tab-presenca'), panel: document.getElementById('panel-presenca') },
+  };
+
+  function activateTab(key) {
+    Object.entries(tabs).forEach(([k, { btn, panel }]) => {
+      if (k === key) {
+        btn.classList.add('bg-navy-600', 'text-white');
+        btn.classList.remove('text-slate-500');
+        panel.classList.remove('hidden');
+      } else {
+        btn.classList.remove('bg-navy-600', 'text-white');
+        btn.classList.add('text-slate-500');
+        panel.classList.add('hidden');
+      }
+    });
+  }
+
+  tabs.artilheiros.btn.addEventListener('click', () => activateTab('artilheiros'));
+  tabs.cartoes.btn.addEventListener('click', () => activateTab('cartoes'));
+  tabs.presenca.btn.addEventListener('click', () => activateTab('presenca'));
+
+  activateTab('artilheiros');
+</script>
+
+</body>
+</html>

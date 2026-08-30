@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mapa do Protótipo · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77',
+            500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220',
+          },
+          teal: {
+            50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7',
+            500: '#1AA79E', 600: '#158D85', 700: '#0F6E68',
+          },
+          sun: {
+            50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D',
+          },
+        },
+        fontFamily: {
+          display: ['Poppins', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<header class="bg-gradient-to-br from-navy-600 via-navy-600 to-teal-600 px-6 py-10 text-white lg:px-16">
+  <div class="mx-auto flex max-w-5xl items-center gap-3">
+    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl backdrop-blur-sm">⚽</div>
+    <div>
+      <p class="font-display text-xl font-extrabold tracking-tight">KALI BABA</p>
+      <p class="text-xs font-medium uppercase tracking-widest text-teal-100">Mapa do Protótipo</p>
+    </div>
+  </div>
+  <div class="mx-auto mt-6 max-w-5xl">
+    <h1 class="font-display text-2xl font-bold lg:text-3xl">Sistema Kalibaba — Protótipo navegável</h1>
+    <p class="mt-2 max-w-2xl text-sm text-teal-50/90">Todas as 26 telas do inventário aprovado no PRD. Telas com o selo <span class="rounded-full bg-white/20 px-2 py-0.5 text-xs font-semibold">Pronta</span> já podem ser abertas; as demais estão em produção nesta fase de prototipagem.</p>
+  </div>
+</header>
+
+<main class="mx-auto max-w-5xl px-6 py-10 lg:px-16">
+
+  <!-- Acesso comum -->
+  <section class="mb-12">
+    <h2 class="font-display text-lg font-bold text-navy-600">Acesso comum</h2>
+    <p class="mb-4 text-sm text-slate-500">Telas de entrada, acessadas por qualquer usuário antes do login.</p>
+    <div class="grid gap-4 sm:grid-cols-2">
+
+      <a href="login.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Login</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Autenticar usuário (e-mail, senha, "esqueci senha").</p>
+      </a>
+
+      <a href="recuperar-senha.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Recuperar senha</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Redefinir senha via link enviado por e-mail.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Sócio -->
+  <section class="mb-12">
+    <h2 class="font-display text-lg font-bold text-navy-600">Sócio <span class="ml-1 text-xs font-normal uppercase tracking-wide text-slate-400">mobile-first</span></h2>
+    <p class="mb-4 text-sm text-slate-500">Consulta e pagamento — uso majoritariamente no celular.</p>
+    <div class="grid gap-4 sm:grid-cols-2">
+
+      <a href="home-socio.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Home do Sócio</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Status, próximo baba, atalho "Pagar", resumo geral.</p>
+      </a>
+
+      <a href="situacao-financeira.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Minha Situação Financeira</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Histórico de pagamentos, mês a mês.</p>
+      </a>
+
+      <a href="pagar-mensalidade.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Pagar Mensalidade (Pix)</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">QR Code, Pix copia-e-cola, status de confirmação.</p>
+      </a>
+
+      <a href="meu-perfil.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Meu Perfil</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Ver/editar dados cadastrais.</p>
+      </a>
+
+      <a href="proximo-baba.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Próximo Baba / Calendário</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Data do próximo domingo, aviso de suspensão.</p>
+      </a>
+
+      <a href="detalhe-baba.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Detalhe do Baba (histórico)</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Times sorteados, gols e cartões de um domingo.</p>
+      </a>
+
+      <a href="rankings.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Rankings / Estatísticas</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Artilheiros, cartões, presença por temporada.</p>
+      </a>
+
+      <a href="prestacao-contas.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Prestação de Contas (consulta)</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Lista de meses, visualizar/baixar PDF.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Diretor -->
+  <section>
+    <h2 class="font-display text-lg font-bold text-navy-600">Diretor <span class="ml-1 text-xs font-normal uppercase tracking-wide text-slate-400">desktop-friendly</span></h2>
+    <p class="mb-4 text-sm text-slate-500">Painel administrativo — gestão financeira e do baba.</p>
+    <div class="grid gap-4 sm:grid-cols-2">
+
+      <a href="dashboard-financeiro.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Dashboard Financeiro</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Saldo acumulado, receita/despesa, inadimplência.</p>
+      </a>
+
+      <a href="socios-lista.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Gestão de Sócios (lista)</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Filtro por status, busca, paginação.</p>
+      </a>
+
+      <a href="socio-form.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Cadastro/Edição de Sócio</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Dados pessoais, status, histórico mensal.</p>
+      </a>
+
+      <a href="convidados-lista.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Gestão de Convidados (lista)</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Busca, histórico de participações.</p>
+      </a>
+
+      <a href="convidado-form.html" class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-teal-300 hover:shadow-md">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-800 group-hover:text-navy-600">Cadastro/Edição de Convidado</h3>
+          <span class="rounded-full bg-teal-50 px-2.5 py-0.5 text-xs font-semibold text-teal-700">Pronta</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-500">Nome, telefone, "convidado por".</p>
+      </a>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Lançamento de Mensalidades</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Sócio, mês/ano, valor, forma de pagamento.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Lançamento de Pagamento de Convidado</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Convidado, domingo, valor, forma.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Gestão de Despesas</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Semana, categoria, valor, anexo de comprovante.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Gestão de Categorias</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">CRUD de categorias de receita/despesa.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Prestação de Contas (geração)</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Seleção de mês, preview, exportar PDF.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Gestão de Inadimplência</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Sócios sem lançamento no mês, marcar "cobrado".</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Gestão do Baba do Dia</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Data, lista de presentes (sócios + convidados).</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Sorteio de Times</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">1 goleiro + 6 de linha por time, ajuste manual.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Registro de Gols e Cartões</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Jogador, time, tipo de evento.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Suspensões Ativas</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">Suspensos por cartão vermelho, override manual.</p>
+      </div>
+
+      <div class="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-5">
+        <div class="flex items-start justify-between">
+          <h3 class="font-display font-semibold text-slate-500">Configurações Gerais</h3>
+          <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-1.5 text-sm text-slate-400">QR Code/Pix, valores padrão, temporada.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="border-t border-slate-200 px-6 py-8 text-center text-xs text-slate-400 lg:px-16">
+  Sistema Kalibaba © 2026 — Protótipo em desenvolvimento (fase <code>/prototipar</code>). Total: 26 telas.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prestação de Contas · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-64 lg:flex-shrink-0 lg:flex-col lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Área do sócio</p>
+      </div>
+    </div>
+    <nav class="mt-8 flex flex-1 flex-col gap-1">
+      <a href="home-socio.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="home" class="h-5 w-5"></i>
+        Início
+      </a>
+      <a href="situacao-financeira.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="wallet" class="h-5 w-5"></i>
+        Minha Situação Financeira
+      </a>
+      <a href="pagar-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="credit-card" class="h-5 w-5"></i>
+        Pagar Mensalidade
+      </a>
+      <a href="proximo-baba.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="calendar" class="h-5 w-5"></i>
+        Próximo Baba
+      </a>
+      <a href="rankings.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="trophy" class="h-5 w-5"></i>
+        Rankings / Estatísticas
+      </a>
+      <a href="prestacao-contas.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+        <i data-lucide="file-text" class="h-5 w-5"></i>
+        Prestação de Contas
+      </a>
+      <a href="meu-perfil.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+        <i data-lucide="user" class="h-5 w-5"></i>
+        Meu Perfil
+      </a>
+    </nav>
+    <a href="login.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1 pb-24 lg:pb-0">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <a href="home-socio.html" aria-label="Voltar" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="arrow-left" class="h-5 w-5"></i>
+      </a>
+      <span class="font-display text-sm font-bold text-navy-600">Prestação de Contas</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Transparência</p>
+        <h1 class="font-display text-xl font-bold text-navy-600">Prestação de Contas</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">RS</div>
+    </header>
+
+    <main class="mx-auto max-w-2xl px-4 py-5 lg:max-w-3xl lg:px-8 lg:py-8">
+
+      <div class="mb-4 flex items-center justify-between">
+        <p class="text-sm text-slate-500">Relatórios mensais de receitas, despesas e saldo da associação.</p>
+      </div>
+      <div class="mb-4 flex justify-end">
+        <select class="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+          <option>2026</option>
+          <option>2025</option>
+        </select>
+      </div>
+
+      <div class="space-y-3">
+
+        <!-- Agosto/2026 (aberto por padrão) -->
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <button class="report-toggle flex w-full items-center justify-between px-4 py-3.5" data-target="details-ago">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+                <i data-lucide="file-text" class="h-5 w-5"></i>
+              </span>
+              <div class="text-left">
+                <p class="font-display text-sm font-semibold text-slate-800">Agosto/2026</p>
+                <p class="text-xs text-slate-500">Publicado em 05/09/2026</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <p class="hidden text-sm font-semibold text-teal-600 sm:block">Saldo: R$ 245,50</p>
+              <i data-lucide="chevron-down" class="toggle-icon h-4 w-4 text-slate-400 transition-transform rotate-180"></i>
+            </div>
+          </button>
+          <div id="details-ago" class="border-t border-slate-100 px-4 py-4">
+            <div class="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Receita total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 4.590,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Despesa total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 4.120,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo do mês</p>
+                <p class="font-display text-sm font-bold text-teal-600">R$ 470,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo acumulado</p>
+                <p class="font-display text-sm font-bold text-navy-600">R$ 245,50</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Receitas</p>
+                <ul class="space-y-1.5 text-sm text-slate-600">
+                  <li class="flex justify-between"><span>Mensalidades de sócios</span><span class="font-medium text-slate-800">R$ 4.180,00</span></li>
+                  <li class="flex justify-between"><span>Pagamentos de convidados</span><span class="font-medium text-slate-800">R$ 360,00</span></li>
+                  <li class="flex justify-between"><span>Outras receitas</span><span class="font-medium text-slate-800">R$ 50,00</span></li>
+                </ul>
+              </div>
+              <div>
+                <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Despesas por categoria</p>
+                <ul class="space-y-1.5 text-sm text-slate-600">
+                  <li class="flex justify-between"><span>Aluguel de quadra</span><span class="font-medium text-slate-800">R$ 2.400,00</span></li>
+                  <li class="flex justify-between"><span>Arbitragem</span><span class="font-medium text-slate-800">R$ 800,00</span></li>
+                  <li class="flex justify-between"><span>Material esportivo</span><span class="font-medium text-slate-800">R$ 420,00</span></li>
+                  <li class="flex justify-between"><span>Água / gelo</span><span class="font-medium text-slate-800">R$ 300,00</span></li>
+                  <li class="flex justify-between"><span>Outras despesas</span><span class="font-medium text-slate-800">R$ 200,00</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <a href="#" class="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-6">
+              <i data-lucide="download" class="h-4 w-4"></i>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Julho/2026 -->
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <button class="report-toggle flex w-full items-center justify-between px-4 py-3.5" data-target="details-jul">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+                <i data-lucide="file-text" class="h-5 w-5"></i>
+              </span>
+              <div class="text-left">
+                <p class="font-display text-sm font-semibold text-slate-800">Julho/2026</p>
+                <p class="text-xs text-slate-500">Publicado em 03/08/2026</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <p class="hidden text-sm font-semibold text-red-500 sm:block">Saldo: -R$ 224,50</p>
+              <i data-lucide="chevron-down" class="toggle-icon h-4 w-4 text-slate-400 transition-transform"></i>
+            </div>
+          </button>
+          <div id="details-jul" class="hidden border-t border-slate-100 px-4 py-4">
+            <div class="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Receita total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 3.980,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Despesa total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 4.350,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo do mês</p>
+                <p class="font-display text-sm font-bold text-red-500">-R$ 370,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo acumulado</p>
+                <p class="font-display text-sm font-bold text-red-500">-R$ 224,50</p>
+              </div>
+            </div>
+            <a href="#" class="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-6">
+              <i data-lucide="download" class="h-4 w-4"></i>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Junho/2026 -->
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <button class="report-toggle flex w-full items-center justify-between px-4 py-3.5" data-target="details-jun">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+                <i data-lucide="file-text" class="h-5 w-5"></i>
+              </span>
+              <div class="text-left">
+                <p class="font-display text-sm font-semibold text-slate-800">Junho/2026</p>
+                <p class="text-xs text-slate-500">Publicado em 04/07/2026</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <p class="hidden text-sm font-semibold text-teal-600 sm:block">Saldo: R$ 145,50</p>
+              <i data-lucide="chevron-down" class="toggle-icon h-4 w-4 text-slate-400 transition-transform"></i>
+            </div>
+          </button>
+          <div id="details-jun" class="hidden border-t border-slate-100 px-4 py-4">
+            <div class="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Receita total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 4.310,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Despesa total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 3.890,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo do mês</p>
+                <p class="font-display text-sm font-bold text-teal-600">R$ 420,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo acumulado</p>
+                <p class="font-display text-sm font-bold text-teal-600">R$ 145,50</p>
+              </div>
+            </div>
+            <a href="#" class="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-6">
+              <i data-lucide="download" class="h-4 w-4"></i>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Maio/2026 -->
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <button class="report-toggle flex w-full items-center justify-between px-4 py-3.5" data-target="details-mai">
+            <div class="flex items-center gap-3">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+                <i data-lucide="file-text" class="h-5 w-5"></i>
+              </span>
+              <div class="text-left">
+                <p class="font-display text-sm font-semibold text-slate-800">Maio/2026</p>
+                <p class="text-xs text-slate-500">Publicado em 03/06/2026</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <p class="hidden text-sm font-semibold text-red-500 sm:block">Saldo: -R$ 274,50</p>
+              <i data-lucide="chevron-down" class="toggle-icon h-4 w-4 text-slate-400 transition-transform"></i>
+            </div>
+          </button>
+          <div id="details-mai" class="hidden border-t border-slate-100 px-4 py-4">
+            <div class="grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Receita total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 3.760,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Despesa total</p>
+                <p class="font-display text-sm font-bold text-slate-800">R$ 4.100,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo do mês</p>
+                <p class="font-display text-sm font-bold text-red-500">-R$ 340,00</p>
+              </div>
+              <div class="rounded-xl bg-slate-50 p-3">
+                <p class="text-[11px] text-slate-500">Saldo acumulado</p>
+                <p class="font-display text-sm font-bold text-red-500">-R$ 274,50</p>
+              </div>
+            </div>
+            <a href="#" class="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-6">
+              <i data-lucide="download" class="h-4 w-4"></i>
+              Baixar PDF
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Barra de navegação inferior (mobile) -->
+<nav class="fixed inset-x-0 bottom-0 z-40 flex items-center justify-around border-t border-slate-200 bg-white px-2 py-2 lg:hidden">
+  <a href="home-socio.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="home" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Início</span>
+  </a>
+  <a href="situacao-financeira.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="wallet" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Financeiro</span>
+  </a>
+  <a href="proximo-baba.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="calendar" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Baba</span>
+  </a>
+  <a href="rankings.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="trophy" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Rankings</span>
+  </a>
+  <a href="meu-perfil.html" class="flex flex-col items-center gap-0.5 px-3 py-1 text-slate-400 hover:text-navy-600">
+    <i data-lucide="user" class="h-5 w-5"></i>
+    <span class="text-[10px] font-medium">Perfil</span>
+  </a>
+</nav>
+
+<script>
+  lucide.createIcons();
+
+  document.querySelectorAll('.report-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      const icon = btn.querySelector('.toggle-icon');
+      target.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    });
+  });
+</script>
+
+</body>
+</html>
