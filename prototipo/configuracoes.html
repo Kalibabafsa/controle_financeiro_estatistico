@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Configurações Gerais · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-72 lg:flex-shrink-0 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Painel do diretor</p>
+      </div>
+    </div>
+
+    <nav class="mt-8 flex flex-1 flex-col gap-5">
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+        <a href="dashboard-financeiro.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          Dashboard Financeiro
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+        <div class="flex flex-col gap-1">
+          <a href="lancamento-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="credit-card" class="h-5 w-5"></i>
+            Lançamento de Mensalidades
+          </a>
+          <a href="lancamento-convidado.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="banknote" class="h-5 w-5"></i>
+            Pagamento de Convidado
+          </a>
+          <a href="despesas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="receipt" class="h-5 w-5"></i>
+            Gestão de Despesas
+          </a>
+          <a href="categorias.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="tags" class="h-5 w-5"></i>
+            Gestão de Categorias
+          </a>
+          <a href="inadimplencia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-x" class="h-5 w-5"></i>
+            Gestão de Inadimplência
+          </a>
+          <a href="prestacao-contas-geracao.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Prestação de Contas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+        <div class="flex flex-col gap-1">
+          <a href="socios-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            Sócios
+          </a>
+          <a href="convidados-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-plus" class="h-5 w-5"></i>
+            Convidados
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+        <div class="flex flex-col gap-1">
+          <a href="baba-dia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+            Baba do Dia
+          </a>
+          <a href="sorteio-times.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shuffle" class="h-5 w-5"></i>
+            Sorteio de Times
+          </a>
+          <a href="gols-cartoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+            Gols e Cartões
+          </a>
+          <a href="suspensoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shield-alert" class="h-5 w-5"></i>
+            Suspensões Ativas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+        <a href="configuracoes.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          Configurações Gerais
+        </a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <button id="menu-toggle" aria-label="Abrir menu" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+      </button>
+      <span class="font-display text-sm font-bold text-navy-600">Configurações</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Sistema</p>
+        <h1 class="font-display text-xl font-bold text-navy-600">Configurações Gerais</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">CD</div>
+    </header>
+
+    <!-- Overlay + drawer (mobile) -->
+    <div id="drawer-overlay" class="fixed inset-0 z-50 hidden bg-slate-900/40 lg:hidden"></div>
+    <aside id="drawer" class="fixed inset-y-0 left-0 z-[55] w-72 -translate-x-full overflow-y-auto bg-white shadow-xl transition-transform duration-200 ease-out lg:hidden">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <div class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-600 text-base">⚽</div>
+          <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        </div>
+        <button id="drawer-close" aria-label="Fechar menu" class="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 px-3 py-4">
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+          <a href="dashboard-financeiro.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Dashboard Financeiro</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+          <a href="lancamento-mensalidade.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Lançamento de Mensalidades</a>
+          <a href="lancamento-convidado.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Pagamento de Convidado</a>
+          <a href="despesas.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Despesas</a>
+          <a href="categorias.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Categorias</a>
+          <a href="inadimplencia.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Inadimplência</a>
+          <a href="prestacao-contas-geracao.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Prestação de Contas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+          <a href="socios-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sócios</a>
+          <a href="convidados-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Convidados</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+          <a href="baba-dia.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Baba do Dia</a>
+          <a href="sorteio-times.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sorteio de Times</a>
+          <a href="gols-cartoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gols e Cartões</a>
+          <a href="suspensoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Suspensões Ativas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+          <a href="configuracoes.html" class="block rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">Configurações Gerais</a>
+        </div>
+        <div class="mt-2 border-t border-slate-100 pt-3">
+          <a href="login.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50">Sair</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="mx-auto max-w-3xl px-4 py-5 lg:px-8 lg:py-8">
+
+      <!-- Alerta de sucesso ao salvar (oculto por padrão, reutilizado pelas seções) -->
+      <div id="save-success" class="mb-4 hidden items-start gap-2 rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-700" role="status">
+        <i data-lucide="check-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+        <p class="font-medium">Configurações salvas com sucesso.</p>
+      </div>
+
+      <!-- Valores padrão -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Valores padrão</p>
+        <p class="mt-1 text-xs text-slate-400">Usados como sugestão nos lançamentos — podem ser editados individualmente em cada pagamento.</p>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="valor-mensalidade" class="mb-1.5 block text-sm font-medium text-slate-700">Mensalidade de sócio</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-sm text-slate-400">R$</span>
+              <input id="valor-mensalidade" type="text" value="110,00" class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-9 pr-3 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+            </div>
+          </div>
+          <div>
+            <label for="valor-convidado" class="mb-1.5 block text-sm font-medium text-slate-700">Pagamento de convidado</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-sm text-slate-400">R$</span>
+              <input id="valor-convidado" type="text" value="30,00" class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-9 pr-3 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+            </div>
+          </div>
+        </div>
+        <button class="salvar-btn mt-4 rounded-full bg-navy-600 px-5 py-2 text-sm font-semibold text-white hover:bg-navy-700">Salvar valores</button>
+      </div>
+
+      <!-- Temporada atual -->
+      <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Temporada</p>
+        <p class="mt-1 text-xs text-slate-400">Define o ano usado nos rankings de artilheiros, cartões e presença. Trocar a temporada não apaga o histórico de anos anteriores.</p>
+        <div class="mt-4 max-w-xs">
+          <label for="temporada" class="mb-1.5 block text-sm font-medium text-slate-700">Temporada atual</label>
+          <select id="temporada" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+            <option selected>2026</option>
+            <option>2025</option>
+            <option>2027</option>
+          </select>
+        </div>
+        <button class="salvar-btn mt-4 rounded-full bg-navy-600 px-5 py-2 text-sm font-semibold text-white hover:bg-navy-700">Salvar temporada</button>
+      </div>
+
+      <!-- Dados do Pix -->
+      <div class="mt-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Dados do Pix</p>
+        <p class="mt-1 text-xs text-slate-400">Usados para gerar o QR Code exibido aos sócios na tela "Pagar Mensalidade".</p>
+
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label for="chave-pix" class="mb-1.5 block text-sm font-medium text-slate-700">Chave Pix</label>
+            <input id="chave-pix" type="text" value="associacao-kalibaba@pix.com.br" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div>
+            <label for="beneficiario" class="mb-1.5 block text-sm font-medium text-slate-700">Nome do beneficiário</label>
+            <input id="beneficiario" type="text" value="Associação Kalibaba" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="banco" class="mb-1.5 block text-sm font-medium text-slate-700">Banco</label>
+            <input id="banco" type="text" value="Banco Inter" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-col items-center gap-3 rounded-xl bg-slate-50 p-4 sm:flex-row">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=10-37-64&data=00020126580014BR.GOV.BCB.PIX0136associacao-kalibaba%40pix.com.br5204000053039865802BR5913Assoc%20Kalibaba6009Sao%20Paulo6304ABCD"
+            alt="Pré-visualização do QR Code Pix"
+            class="h-24 w-24 rounded-lg border border-slate-200 bg-white p-1"
+          />
+          <div>
+            <p class="text-sm font-medium text-slate-700">Pré-visualização do QR Code</p>
+            <p class="text-xs text-slate-400">É este QR Code que os sócios verão na tela de pagamento.</p>
+          </div>
+        </div>
+
+        <button class="salvar-btn mt-4 rounded-full bg-navy-600 px-5 py-2 text-sm font-semibold text-white hover:bg-navy-700">Salvar dados do Pix</button>
+      </div>
+
+      <!-- Integração futura com API do Banco Inter -->
+      <div class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50/60 p-5">
+        <div class="flex items-center gap-2">
+          <i data-lucide="lock" class="h-4 w-4 text-slate-400"></i>
+          <p class="font-display text-sm font-semibold text-slate-500">Integração automática via API do Banco Inter</p>
+          <span class="rounded-full bg-slate-200 px-2 py-0.5 text-[10px] font-semibold text-slate-500">Em breve</span>
+        </div>
+        <p class="mt-2 text-xs text-slate-400">Confirmação automática de pagamento Pix (webhook), sujeita a viabilidade técnica com conta PJ do Banco Inter. Enquanto isso, o diretor confirma pagamentos manualmente.</p>
+        <div class="mt-4 grid gap-4 opacity-60 sm:grid-cols-2">
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-slate-500">Client ID</label>
+            <input type="text" disabled placeholder="Disponível quando a integração for habilitada" class="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-100 px-3.5 py-2.5 text-sm text-slate-400 placeholder:text-slate-400" />
+          </div>
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-slate-500">Client Secret</label>
+            <input type="password" disabled placeholder="••••••••" class="w-full cursor-not-allowed rounded-xl border border-slate-200 bg-slate-100 px-3.5 py-2.5 text-sm text-slate-400" />
+          </div>
+        </div>
+        <p class="mt-3 flex items-center gap-1.5 text-[11px] text-slate-400">
+          <i data-lucide="shield-check" class="h-3.5 w-3.5"></i>
+          Credenciais nunca são armazenadas no navegador — ficam apenas em variáveis de ambiente seguras no backend.
+        </p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const drawerClose = document.getElementById('drawer-close');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  function openDrawer() { drawer.classList.remove('-translate-x-full'); drawerOverlay.classList.remove('hidden'); }
+  function closeDrawer() { drawer.classList.add('-translate-x-full'); drawerOverlay.classList.add('hidden'); }
+  menuToggle.addEventListener('click', openDrawer);
+  drawerClose.addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+
+  // Confirmação de salvamento (reaproveitada por todas as seções)
+  const saveSuccess = document.getElementById('save-success');
+  document.querySelectorAll('.salvar-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      saveSuccess.classList.remove('hidden');
+      saveSuccess.classList.add('flex');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        saveSuccess.classList.add('hidden');
+        saveSuccess.classList.remove('flex');
+      }, 3000);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Registro de Gols e Cartões · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-72 lg:flex-shrink-0 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Painel do diretor</p>
+      </div>
+    </div>
+
+    <nav class="mt-8 flex flex-1 flex-col gap-5">
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+        <a href="dashboard-financeiro.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          Dashboard Financeiro
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+        <div class="flex flex-col gap-1">
+          <a href="lancamento-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="credit-card" class="h-5 w-5"></i>
+            Lançamento de Mensalidades
+          </a>
+          <a href="lancamento-convidado.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="banknote" class="h-5 w-5"></i>
+            Pagamento de Convidado
+          </a>
+          <a href="despesas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="receipt" class="h-5 w-5"></i>
+            Gestão de Despesas
+          </a>
+          <a href="categorias.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="tags" class="h-5 w-5"></i>
+            Gestão de Categorias
+          </a>
+          <a href="inadimplencia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-x" class="h-5 w-5"></i>
+            Gestão de Inadimplência
+          </a>
+          <a href="prestacao-contas-geracao.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Prestação de Contas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+        <div class="flex flex-col gap-1">
+          <a href="socios-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            Sócios
+          </a>
+          <a href="convidados-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-plus" class="h-5 w-5"></i>
+            Convidados
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+        <div class="flex flex-col gap-1">
+          <a href="baba-dia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+            Baba do Dia
+          </a>
+          <a href="sorteio-times.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shuffle" class="h-5 w-5"></i>
+            Sorteio de Times
+          </a>
+          <a href="gols-cartoes.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+            <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+            Gols e Cartões
+          </a>
+          <a href="suspensoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shield-alert" class="h-5 w-5"></i>
+            Suspensões Ativas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+        <a href="configuracoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          Configurações Gerais
+        </a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <a href="sorteio-times.html" aria-label="Voltar" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="arrow-left" class="h-5 w-5"></i>
+      </a>
+      <span class="font-display text-sm font-bold text-navy-600">Gols e Cartões</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <a href="sorteio-times.html" class="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-navy-600">
+          <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+          Voltar para Sorteio de Times
+        </a>
+        <h1 class="mt-1 font-display text-xl font-bold text-navy-600">Registro de Gols e Cartões</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">CD</div>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-4 py-5 lg:px-8 lg:py-8">
+
+      <p class="mb-4 text-sm text-slate-500">Domingo, 30/08/2026 · registre os eventos conforme acontecem na partida.</p>
+
+      <!-- Formulário de registro -->
+      <form id="evento-form" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" onsubmit="return false;">
+        <p class="font-display text-sm font-semibold text-slate-700">Registrar evento</p>
+
+        <div class="mt-4">
+          <label for="jogador" class="mb-1.5 block text-sm font-medium text-slate-700">Jogador</label>
+          <select id="jogador" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+            <optgroup label="Time 1">
+              <option>Marcos Vinícius</option>
+              <option>João Pedro</option>
+              <option>Lucas Almeida</option>
+              <option>Bruno Costa</option>
+              <option>Diego Ramos</option>
+              <option>Felipe Souza</option>
+              <option>André Lima</option>
+            </optgroup>
+            <optgroup label="Time 2">
+              <option>Thiago Nunes</option>
+              <option selected>Rafael Silva</option>
+              <option>Carlos Eduardo</option>
+              <option>Vinícius Rocha</option>
+              <option>Gabriel Dias</option>
+              <option>Renato Alves</option>
+              <option>Márcio Teixeira</option>
+            </optgroup>
+            <optgroup label="Time 3">
+              <option>Eduardo Prado</option>
+              <option>Fernando Melo</option>
+              <option>Rodrigo Castro</option>
+              <option>Paulo Henrique</option>
+              <option>Leonardo Faria</option>
+              <option>Igor Batista</option>
+              <option>Daniel Moreira</option>
+            </optgroup>
+            <optgroup label="Time 4">
+              <option>Alexandre Cunha</option>
+              <option>Gustavo Pires</option>
+              <option>Henrique Barros</option>
+              <option>Matheus Rezende</option>
+              <option>Vitor Hugo</option>
+              <option>Samuel Cardoso</option>
+              <option>Otávio Neves</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="mt-4">
+          <p class="mb-1.5 block text-sm font-medium text-slate-700">Tipo de evento</p>
+          <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            <label class="evento-option flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-teal-500 bg-teal-50 px-2 py-3 text-center">
+              <input type="radio" name="evento" value="gol" class="hidden" checked />
+              <span class="text-lg">⚽</span>
+              <span class="text-xs font-semibold text-teal-700">Gol</span>
+            </label>
+            <label class="evento-option flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-slate-200 bg-white px-2 py-3 text-center">
+              <input type="radio" name="evento" value="amarelo" class="hidden" />
+              <span class="h-4 w-3 rounded-sm bg-yellow-400"></span>
+              <span class="mt-0.5 text-xs font-semibold text-slate-500">Amarelo</span>
+            </label>
+            <label class="evento-option flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-slate-200 bg-white px-2 py-3 text-center">
+              <input type="radio" name="evento" value="azul" class="hidden" />
+              <span class="h-4 w-3 rounded-sm bg-blue-500"></span>
+              <span class="mt-0.5 text-xs font-semibold text-slate-500">Azul</span>
+            </label>
+            <label class="evento-option flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-slate-200 bg-white px-2 py-3 text-center">
+              <input type="radio" name="evento" value="vermelho" class="hidden" />
+              <span class="h-4 w-3 rounded-sm bg-red-600"></span>
+              <span class="mt-0.5 text-xs font-semibold text-slate-500">Vermelho</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Aviso de suspensão automática (cartão vermelho) -->
+        <div id="aviso-vermelho" class="mt-4 hidden items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <i data-lucide="shield-alert" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+          <p>Cartão vermelho gera <strong>suspensão automática</strong> para o próximo domingo (06/09/2026). O jogador ficará bloqueado na lista de presença até lá, salvo override manual.</p>
+        </div>
+
+        <button id="submit-btn" type="submit" class="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-3 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-8">
+          <i data-lucide="plus" class="h-4 w-4"></i>
+          Registrar evento
+        </button>
+      </form>
+
+      <!-- Eventos do baba de hoje -->
+      <div class="mt-5 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-5 py-4">
+          <p class="font-display text-sm font-semibold text-slate-700">Eventos do baba de hoje</p>
+        </div>
+        <div id="lista-eventos" class="divide-y divide-slate-100">
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Fernando Melo</p>
+              <p class="text-xs text-slate-400">Time 3 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Rafael Silva</p>
+              <p class="text-xs text-slate-400">Time 2 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="amarelo">
+            <span class="h-4 w-3 flex-shrink-0 rounded-sm bg-yellow-400"></span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Bruno Costa</p>
+              <p class="text-xs text-slate-400">Time 1 · Cartão amarelo</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Gustavo Pires</p>
+              <p class="text-xs text-slate-400">Time 4 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="azul">
+            <span class="h-4 w-3 flex-shrink-0 rounded-sm bg-blue-500"></span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Rodrigo Castro</p>
+              <p class="text-xs text-slate-400">Time 3 · Cartão azul</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Fernando Melo</p>
+              <p class="text-xs text-slate-400">Time 3 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="amarelo">
+            <span class="h-4 w-3 flex-shrink-0 rounded-sm bg-yellow-400"></span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Vinícius Rocha</p>
+              <p class="text-xs text-slate-400">Time 2 · Cartão amarelo</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">João Pedro</p>
+              <p class="text-xs text-slate-400">Time 1 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 bg-red-50/60 px-5 py-3" data-evento="vermelho">
+            <span class="h-4 w-3 flex-shrink-0 rounded-sm bg-red-600"></span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Daniel Moreira</p>
+              <p class="text-xs text-red-500">Time 3 · Cartão vermelho · suspenso em 06/09/2026</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Carlos Eduardo</p>
+              <p class="text-xs text-slate-400">Time 2 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Rafael Silva</p>
+              <p class="text-xs text-slate-400">Time 2 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Gustavo Pires</p>
+              <p class="text-xs text-slate-400">Time 4 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3" data-evento="gol">
+            <span class="text-lg">⚽</span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Fernando Melo</p>
+              <p class="text-xs text-slate-400">Time 3 · Gol</p>
+            </div>
+            <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const drawerClose = document.getElementById('drawer-close');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  if (menuToggle) {
+    function openDrawer() { drawer.classList.remove('-translate-x-full'); drawerOverlay.classList.remove('hidden'); }
+    function closeDrawer() { drawer.classList.add('-translate-x-full'); drawerOverlay.classList.add('hidden'); }
+    menuToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+  }
+
+  // Alternar tipo de evento selecionado
+  const eventoOptions = document.querySelectorAll('.evento-option');
+  const avisoVermelho = document.getElementById('aviso-vermelho');
+  eventoOptions.forEach((label) => {
+    label.addEventListener('click', () => {
+      eventoOptions.forEach((l) => {
+        l.classList.remove('border-teal-500', 'bg-teal-50');
+        l.classList.add('border-slate-200', 'bg-white');
+        l.querySelector('span:last-child').classList.remove('text-teal-700');
+        l.querySelector('span:last-child').classList.add('text-slate-500');
+      });
+      label.classList.remove('border-slate-200', 'bg-white');
+      label.classList.add('border-teal-500', 'bg-teal-50');
+      label.querySelector('span:last-child').classList.remove('text-slate-500');
+      label.querySelector('span:last-child').classList.add('text-teal-700');
+
+      const valor = label.querySelector('input').value;
+      avisoVermelho.classList.toggle('hidden', valor !== 'vermelho');
+      avisoVermelho.classList.toggle('flex', valor === 'vermelho');
+    });
+  });
+
+  // Registrar novo evento (demonstração)
+  const tiposInfo = {
+    gol: { icon: '<span class="text-lg">⚽</span>', label: 'Gol', textClass: 'text-xs text-slate-400', rowClass: '' },
+    amarelo: { icon: '<span class="h-4 w-3 flex-shrink-0 rounded-sm bg-yellow-400"></span>', label: 'Cartão amarelo', textClass: 'text-xs text-slate-400', rowClass: '' },
+    azul: { icon: '<span class="h-4 w-3 flex-shrink-0 rounded-sm bg-blue-500"></span>', label: 'Cartão azul', textClass: 'text-xs text-slate-400', rowClass: '' },
+    vermelho: { icon: '<span class="h-4 w-3 flex-shrink-0 rounded-sm bg-red-600"></span>', label: 'Cartão vermelho · suspenso em 06/09/2026', textClass: 'text-xs text-red-500', rowClass: 'bg-red-50/60' },
+  };
+
+  document.getElementById('evento-form').addEventListener('submit', () => {
+    const jogadorSelect = document.getElementById('jogador');
+    const jogador = jogadorSelect.value;
+    const time = jogadorSelect.selectedOptions[0].closest('optgroup').label;
+    const tipoInput = document.querySelector('input[name="evento"]:checked');
+    const tipo = tiposInfo[tipoInput.value];
+
+    const lista = document.getElementById('lista-eventos');
+    const row = document.createElement('div');
+    row.className = `flex items-center gap-3 px-5 py-3 ${tipo.rowClass}`;
+    row.innerHTML = `
+      ${tipo.icon}
+      <div class="flex-1">
+        <p class="text-sm font-medium text-slate-800">${jogador}</p>
+        <p class="${tipo.textClass}">${time} · ${tipo.label}</p>
+      </div>
+      <button class="remover-evento text-slate-300 hover:text-red-500" title="Remover"><i data-lucide="trash-2" class="h-4 w-4"></i></button>`;
+    lista.prepend(row);
+    lucide.createIcons();
+  });
+
+  // Remover evento
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.remover-evento');
+    if (!btn) return;
+    btn.closest('[data-evento]').remove();
+  });
+</script>
+
+</body>
+</html>

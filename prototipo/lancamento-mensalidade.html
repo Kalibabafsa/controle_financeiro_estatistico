@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lançamento de Mensalidades · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-72 lg:flex-shrink-0 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Painel do diretor</p>
+      </div>
+    </div>
+
+    <nav class="mt-8 flex flex-1 flex-col gap-5">
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+        <a href="dashboard-financeiro.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          Dashboard Financeiro
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+        <div class="flex flex-col gap-1">
+          <a href="lancamento-mensalidade.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+            <i data-lucide="credit-card" class="h-5 w-5"></i>
+            Lançamento de Mensalidades
+          </a>
+          <a href="lancamento-convidado.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="banknote" class="h-5 w-5"></i>
+            Pagamento de Convidado
+          </a>
+          <a href="despesas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="receipt" class="h-5 w-5"></i>
+            Gestão de Despesas
+          </a>
+          <a href="categorias.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="tags" class="h-5 w-5"></i>
+            Gestão de Categorias
+          </a>
+          <a href="inadimplencia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-x" class="h-5 w-5"></i>
+            Gestão de Inadimplência
+          </a>
+          <a href="prestacao-contas-geracao.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Prestação de Contas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+        <div class="flex flex-col gap-1">
+          <a href="socios-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            Sócios
+          </a>
+          <a href="convidados-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-plus" class="h-5 w-5"></i>
+            Convidados
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+        <div class="flex flex-col gap-1">
+          <a href="baba-dia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+            Baba do Dia
+          </a>
+          <a href="sorteio-times.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shuffle" class="h-5 w-5"></i>
+            Sorteio de Times
+          </a>
+          <a href="gols-cartoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+            Gols e Cartões
+          </a>
+          <a href="suspensoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shield-alert" class="h-5 w-5"></i>
+            Suspensões Ativas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+        <a href="configuracoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          Configurações Gerais
+        </a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <button id="menu-toggle" aria-label="Abrir menu" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+      </button>
+      <span class="font-display text-sm font-bold text-navy-600">Mensalidades</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Financeiro</p>
+        <h1 class="font-display text-xl font-bold text-navy-600">Lançamento de Mensalidades</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">CD</div>
+    </header>
+
+    <!-- Overlay + drawer (mobile) -->
+    <div id="drawer-overlay" class="fixed inset-0 z-50 hidden bg-slate-900/40 lg:hidden"></div>
+    <aside id="drawer" class="fixed inset-y-0 left-0 z-[55] w-72 -translate-x-full overflow-y-auto bg-white shadow-xl transition-transform duration-200 ease-out lg:hidden">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <div class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-600 text-base">⚽</div>
+          <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        </div>
+        <button id="drawer-close" aria-label="Fechar menu" class="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 px-3 py-4">
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+          <a href="dashboard-financeiro.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Dashboard Financeiro</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+          <a href="lancamento-mensalidade.html" class="block rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">Lançamento de Mensalidades</a>
+          <a href="lancamento-convidado.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Pagamento de Convidado</a>
+          <a href="despesas.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Despesas</a>
+          <a href="categorias.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Categorias</a>
+          <a href="inadimplencia.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Inadimplência</a>
+          <a href="prestacao-contas-geracao.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Prestação de Contas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+          <a href="socios-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sócios</a>
+          <a href="convidados-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Convidados</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+          <a href="baba-dia.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Baba do Dia</a>
+          <a href="sorteio-times.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sorteio de Times</a>
+          <a href="gols-cartoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gols e Cartões</a>
+          <a href="suspensoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Suspensões Ativas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+          <a href="configuracoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Configurações Gerais</a>
+        </div>
+        <div class="mt-2 border-t border-slate-100 pt-3">
+          <a href="login.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50">Sair</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="mx-auto max-w-3xl px-4 py-5 lg:px-8 lg:py-8">
+
+      <!-- Alerta de sucesso ao registrar (oculto por padrão) -->
+      <div id="save-success" class="mb-4 hidden items-start gap-2 rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-700" role="status">
+        <i data-lucide="check-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+        <p class="font-medium">Pagamento registrado com sucesso. Status do sócio atualizado para "em dia".</p>
+      </div>
+
+      <form id="lancamento-form" class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm" onsubmit="return false;">
+        <p class="font-display text-sm font-semibold text-slate-700">Registrar pagamento de mensalidade</p>
+
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label for="socio" class="mb-1.5 block text-sm font-medium text-slate-700">Sócio</label>
+            <select id="socio" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30">
+              <option value="emdia">Rafael Silva — já em dia em agosto/2026</option>
+              <option value="inadimplente" selected>Marcos Vinícius — sem lançamento em agosto/2026</option>
+              <option value="dm">Bruno Costa — em Departamento Médico em agosto/2026</option>
+              <option value="inadimplente">Diego Ramos — sem lançamento em agosto/2026</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="mes" class="mb-1.5 block text-sm font-medium text-slate-700">Mês de referência</label>
+            <input id="mes" type="month" value="2026-08" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+
+          <div>
+            <label for="valor" class="mb-1.5 block text-sm font-medium text-slate-700">Valor</label>
+            <div class="relative">
+              <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-sm text-slate-400">R$</span>
+              <input id="valor" type="text" value="110,00" class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-9 pr-3 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+            </div>
+            <p class="mt-1.5 text-xs text-slate-400">Valor padrão configurado: R$ 110,00 (editável).</p>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <p class="mb-1.5 block text-sm font-medium text-slate-700">Forma de pagamento</p>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="payment-option flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-teal-500 bg-teal-50 px-4 py-3 text-sm font-semibold text-teal-700">
+              <input type="radio" name="forma" value="pix" class="hidden" checked />
+              <i data-lucide="qr-code" class="h-4 w-4"></i>
+              Pix
+            </label>
+            <label class="payment-option flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-500">
+              <input type="radio" name="forma" value="dinheiro" class="hidden" />
+              <i data-lucide="banknote" class="h-4 w-4"></i>
+              Dinheiro
+            </label>
+          </div>
+        </div>
+
+        <!-- Status dinâmico do sócio/mês -->
+        <div id="status-box" class="mt-4 flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <i data-lucide="alert-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i>
+          <div>
+            <p class="font-semibold">Sócio inadimplente neste mês</p>
+            <p class="mt-0.5 text-red-600/90">Não há lançamento de mensalidade para agosto/2026. Ao registrar, o status muda para "em dia".</p>
+          </div>
+        </div>
+
+        <button id="submit-btn" type="submit" class="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-navy-600 py-3 font-display text-sm font-semibold text-white hover:bg-navy-700 sm:w-auto sm:px-8">
+          <i data-lucide="check" class="h-4 w-4"></i>
+          Registrar pagamento
+        </button>
+      </form>
+
+      <!-- Lançamentos recentes -->
+      <div class="mt-5 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-5 py-4">
+          <p class="font-display text-sm font-semibold text-slate-700">Lançamentos recentes de mensalidade</p>
+        </div>
+        <div class="divide-y divide-slate-100">
+          <div class="flex items-center gap-3 px-5 py-3">
+            <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+              <i data-lucide="credit-card" class="h-4 w-4"></i>
+            </span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Rafael Silva</p>
+              <p class="text-xs text-slate-400">Agosto/2026 · Pix · 22/08/2026</p>
+            </div>
+            <span class="text-sm font-semibold text-slate-700">R$ 110,00</span>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3">
+            <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+              <i data-lucide="credit-card" class="h-4 w-4"></i>
+            </span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">Carlos Eduardo</p>
+              <p class="text-xs text-slate-400">Agosto/2026 · Dinheiro · 19/08/2026</p>
+            </div>
+            <span class="text-sm font-semibold text-slate-700">R$ 110,00</span>
+          </div>
+          <div class="flex items-center gap-3 px-5 py-3">
+            <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+              <i data-lucide="credit-card" class="h-4 w-4"></i>
+            </span>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-800">João Pedro</p>
+              <p class="text-xs text-slate-400">Agosto/2026 · Pix · 15/08/2026</p>
+            </div>
+            <span class="text-sm font-semibold text-slate-700">R$ 110,00</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const drawerClose = document.getElementById('drawer-close');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  function openDrawer() { drawer.classList.remove('-translate-x-full'); drawerOverlay.classList.remove('hidden'); }
+  function closeDrawer() { drawer.classList.add('-translate-x-full'); drawerOverlay.classList.add('hidden'); }
+  menuToggle.addEventListener('click', openDrawer);
+  drawerClose.addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+
+  // Alternar seleção de forma de pagamento
+  const paymentOptions = document.querySelectorAll('.payment-option');
+  paymentOptions.forEach((label) => {
+    label.addEventListener('click', () => {
+      paymentOptions.forEach((l) => {
+        l.classList.remove('border-teal-500', 'bg-teal-50', 'text-teal-700');
+        l.classList.add('border-slate-200', 'bg-white', 'text-slate-500');
+      });
+      label.classList.remove('border-slate-200', 'bg-white', 'text-slate-500');
+      label.classList.add('border-teal-500', 'bg-teal-50', 'text-teal-700');
+    });
+  });
+
+  // Caixa de status dinâmica conforme sócio selecionado
+  const socioSelect = document.getElementById('socio');
+  const statusBox = document.getElementById('status-box');
+  function updateStatusBox() {
+    const value = socioSelect.value;
+    if (value === 'emdia') {
+      statusBox.className = 'mt-4 flex items-start gap-2.5 rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-700';
+      statusBox.innerHTML = '<i data-lucide="check-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i><div><p class="font-semibold">Sócio já está em dia</p><p class="mt-0.5 text-teal-600/90">Já existe lançamento de mensalidade para agosto/2026. Registrar um novo lançamento criará um pagamento adicional (ex.: valor negociado à parte).</p></div>';
+    } else if (value === 'dm') {
+      statusBox.className = 'mt-4 flex items-start gap-2.5 rounded-xl border border-sun-100 bg-sun-50 px-4 py-3 text-sm text-sun-500';
+      statusBox.innerHTML = '<i data-lucide="alert-triangle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i><div><p class="font-semibold text-slate-700">Sócio em Departamento Médico (DM)</p><p class="mt-0.5 text-slate-500">Por padrão, sócios em DM não são cobrados automaticamente e não entram como inadimplentes. Se você registrar este pagamento mesmo assim, será tratado como <strong>override manual</strong>.</p></div>';
+    } else {
+      statusBox.className = 'mt-4 flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700';
+      statusBox.innerHTML = '<i data-lucide="alert-circle" class="mt-0.5 h-5 w-5 flex-shrink-0"></i><div><p class="font-semibold">Sócio inadimplente neste mês</p><p class="mt-0.5 text-red-600/90">Não há lançamento de mensalidade para agosto/2026. Ao registrar, o status muda para "em dia".</p></div>';
+    }
+    lucide.createIcons();
+  }
+  socioSelect.addEventListener('change', updateStatusBox);
+
+  // Confirmação de registro
+  const saveSuccess = document.getElementById('save-success');
+  document.getElementById('lancamento-form').addEventListener('submit', () => {
+    saveSuccess.classList.remove('hidden');
+    saveSuccess.classList.add('flex');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      saveSuccess.classList.add('hidden');
+      saveSuccess.classList.remove('flex');
+    }, 4000);
+  });
+</script>
+
+</body>
+</html>

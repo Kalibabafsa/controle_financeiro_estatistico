@@ -1,0 +1,353 @@
+// Schema do Sistema Kalibaba — ver docs/planning/architecture.md (seção 2) e docs/database/current.md
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // pooled (pgbouncer, porta 6543) — para a aplicação
+  directUrl = env("DIRECT_URL")   // direta (porta 5432) — para migrations
+}
+
+// ---------- Enums ----------
+
+enum Role {
+  DIRETOR
+  SOCIO
+}
+
+enum MemberStatus {
+  A // Ativo
+  DM // Departamento Médico
+  I // Inativo
+}
+
+enum PaymentMethod {
+  PIX
+  DIN
+}
+
+enum ParticipantType {
+  SOCIO
+  CONVIDADO
+}
+
+enum PlayerPosition {
+  GOLEIRO
+  LINHA
+}
+
+enum EventType {
+  GOL
+  CARTAO_AMARELO
+  CARTAO_AZUL
+  CARTAO_VERMELHO
+}
+
+// ---------- Autenticação ----------
+
+model User {
+  id                  String               @id @default(uuid())
+  email               String               @unique
+  passwordHash        String
+  role                Role
+  socio               Socio?               @relation(fields: [socioId], references: [id])
+  socioId             String?              @unique
+  isActive            Boolean              @default(true)
+  lastLoginAt         DateTime?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  passwordResetTokens PasswordResetToken[]
+  auditLogs           AuditLog[]
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  tokenHash String    @unique // nunca armazenar o token em claro
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+// ---------- Associados ----------
+
+model Socio {
+  id              String         @id @default(uuid())
+  name            String
+  email           String?        @unique
+  phone           String?
+  memberSince     DateTime?
+  defaultPosition PlayerPosition @default(LINHA)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  user          User?
+  statusHistory SocioStatusMensal[]
+  payments      SocioPayment[]
+  presencas     Presenca[]
+  invitedGuests Convidado[]         @relation("InvitedBy")
+  suspensions   Suspension[]
+}
+
+model SocioStatusMensal {
+  id             String       @id @default(uuid())
+  socio          Socio        @relation(fields: [socioId], references: [id])
+  socioId        String
+  referenceMonth DateTime // sempre dia 1 do mês, ex.: 2026-08-01
+  status         MemberStatus
+  observation    String? // preenchido só quando status = DM; visível apenas ao diretor (RSP2)
+  setBy          String // userId do diretor que registrou
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([socioId, referenceMonth])
+  @@index([referenceMonth])
+}
+
+model Convidado {
+  id               String    @id @default(uuid())
+  name             String
+  phone            String?
+  invitedBy        Socio?    @relation("InvitedBy", fields: [invitedById], references: [id])
+  invitedById      String?
+  contactRemovedAt DateTime? // LGPD: quando não nulo, name/phone já foram anonimizados
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  payments    GuestPayment[]
+  presencas   Presenca[]
+  suspensions Suspension[]
+}
+
+// ---------- Financeiro ----------
+
+model SocioPayment {
+  id             String        @id @default(uuid())
+  socio          Socio         @relation(fields: [socioId], references: [id])
+  socioId        String
+  referenceMonth DateTime // dia 1 do mês de referência
+  amount         Decimal       @db.Decimal(10, 2)
+  paymentMethod  PaymentMethod
+  paidAt         DateTime
+  registeredBy   String // userId do diretor
+  pixTxId        String? // reservado para integração automática futura (ADR-05)
+  createdAt      DateTime      @default(now())
+
+  @@unique([socioId, referenceMonth]) // 1 lançamento de mensalidade por sócio/mês
+  @@index([referenceMonth])
+}
+
+model GuestPayment {
+  id            String        @id @default(uuid())
+  convidado     Convidado     @relation(fields: [convidadoId], references: [id])
+  convidadoId   String
+  babaDoDia     BabaDoDia?    @relation(fields: [babaDoDiaId], references: [id])
+  babaDoDiaId   String?
+  matchDate     DateTime // domingo de referência
+  amount        Decimal       @db.Decimal(10, 2)
+  paymentMethod PaymentMethod
+  paidAt        DateTime
+  registeredBy  String
+  createdAt     DateTime      @default(now())
+
+  @@index([matchDate])
+}
+
+model RevenueCategory {
+  id            String         @id @default(uuid())
+  name          String         @unique
+  isSystem      Boolean        @default(false) // "Mensalidades" e "Convidados" são derivadas, não cadastráveis/inativáveis
+  isActive      Boolean        @default(true)
+  otherRevenues OtherRevenue[]
+}
+
+model OtherRevenue {
+  id             String          @id @default(uuid())
+  category       RevenueCategory @relation(fields: [categoryId], references: [id])
+  categoryId     String
+  referenceMonth DateTime
+  amount         Decimal         @db.Decimal(10, 2)
+  description    String?
+  registeredBy   String
+  createdAt      DateTime        @default(now())
+
+  @@index([referenceMonth])
+}
+
+model ExpenseCategory {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  isActive Boolean   @default(true)
+  expenses Expense[]
+}
+
+model Expense {
+  id             String          @id @default(uuid())
+  category       ExpenseCategory @relation(fields: [categoryId], references: [id])
+  categoryId     String
+  weekStart      DateTime
+  weekEnd        DateTime
+  amount         Decimal         @db.Decimal(10, 2)
+  description    String?
+  attachmentPath String? // caminho no bucket privado do Supabase Storage
+  registeredBy   String
+  createdAt      DateTime        @default(now())
+
+  @@index([weekStart])
+}
+
+// Saldo acumulado materializado — ver ADR-03
+model MonthlyClosingBalance {
+  id                String   @id @default(uuid())
+  referenceMonth    DateTime @unique
+  revenueTotal      Decimal  @db.Decimal(10, 2)
+  expenseTotal      Decimal  @db.Decimal(10, 2)
+  monthBalance      Decimal  @db.Decimal(10, 2) // revenueTotal - expenseTotal
+  cumulativeBalance Decimal  @db.Decimal(10, 2) // saldo do mês anterior + monthBalance
+  calculatedAt      DateTime @updatedAt
+}
+
+model AccountabilityReport {
+  // Prestação de Contas
+  id             String   @id @default(uuid())
+  referenceMonth DateTime @unique
+  pdfPath        String // caminho no bucket privado "relatorios-pdf"
+  snapshot       Json // números usados na geração (imutabilidade do relatório já publicado)
+  generatedBy    String
+  generatedAt    DateTime @default(now())
+}
+
+// ---------- Futebol (Baba do dia) ----------
+
+model BabaDoDia {
+  id        String   @id @default(uuid())
+  date      DateTime @unique // domingo
+  time      String? // "08:00"
+  location  String?
+  createdBy String
+  createdAt DateTime @default(now())
+
+  presencas     Presenca[]
+  teams         Team[]
+  events        GameEvent[]
+  guestPayments GuestPayment[]
+
+  @@index([date])
+}
+
+model Presenca {
+  id              String          @id @default(uuid())
+  babaDoDia       BabaDoDia       @relation(fields: [babaDoDiaId], references: [id])
+  babaDoDiaId     String
+  participantType ParticipantType
+  socio           Socio?          @relation(fields: [socioId], references: [id])
+  socioId         String?
+  convidado       Convidado?      @relation(fields: [convidadoId], references: [id])
+  convidadoId     String?
+  position        PlayerPosition // efetivo do dia (default = Socio.defaultPosition, ajustável)
+  createdAt       DateTime        @default(now())
+
+  teamMember TeamMember?
+  events     GameEvent[]
+
+  @@unique([babaDoDiaId, socioId])
+  @@unique([babaDoDiaId, convidadoId])
+}
+
+model Team {
+  id          String       @id @default(uuid())
+  babaDoDia   BabaDoDia    @relation(fields: [babaDoDiaId], references: [id])
+  babaDoDiaId String
+  number      Int // 1 a 4
+  members     TeamMember[]
+  events      GameEvent[]
+
+  @@unique([babaDoDiaId, number])
+}
+
+// onDelete: Cascade em `presenca` — correção do bug 🔴 #1 (code-review.md v001): sem cascade,
+// a relação obrigatória usava RESTRICT (default Postgres/Prisma) e `PUT /babas/:id/presenca`
+// quebrava com 500 (P2003) sempre que o diretor reeditava a presença de um baba que já tinha
+// sorteio/eventos lançados. A aplicação (presencasRepository.replaceAll) já apaga esses
+// vínculos explicitamente antes do delete, na mesma transação, registrando a perda em
+// AuditLog — o cascade aqui é defesa em profundidade para qualquer outro caminho de deleção
+// de Presenca que venha a existir no futuro (schema v002, ver docs/database/CHANGELOG.md).
+model TeamMember {
+  id         String   @id @default(uuid())
+  team       Team     @relation(fields: [teamId], references: [id])
+  teamId     String
+  presenca   Presenca @relation(fields: [presencaId], references: [id], onDelete: Cascade)
+  presencaId String   @unique
+}
+
+model GameEvent {
+  id           String    @id @default(uuid())
+  babaDoDia    BabaDoDia @relation(fields: [babaDoDiaId], references: [id])
+  babaDoDiaId  String
+  presenca     Presenca  @relation(fields: [presencaId], references: [id], onDelete: Cascade)
+  presencaId   String
+  team         Team?     @relation(fields: [teamId], references: [id])
+  teamId       String?
+  type         EventType
+  registeredBy String
+  createdAt    DateTime  @default(now())
+
+  suspension Suspension?
+
+  @@index([babaDoDiaId])
+}
+
+// Materializada no momento do cartão vermelho — status "suspenso?" é sempre
+// recalculado por função de serviço pura, ver ADR-04.
+model Suspension {
+  id            String     @id @default(uuid())
+  // onDelete: Cascade (v002) — se o GameEvent de origem (cartão vermelho) for removido
+  // (ex.: correção de lançamento), a suspensão derivada não deve sobreviver órfã.
+  originEvent   GameEvent  @relation(fields: [originEventId], references: [id], onDelete: Cascade)
+  originEventId String     @unique
+  socio         Socio?     @relation(fields: [socioId], references: [id])
+  socioId       String?
+  convidado     Convidado? @relation(fields: [convidadoId], references: [id])
+  convidadoId   String?
+  effectiveDate DateTime // domingo seguinte ao cartão (data de origem + 7 dias)
+  liftedAt      DateTime? // override manual do diretor (RF30)
+  liftedBy      String?
+  liftReason    String?
+  createdAt     DateTime   @default(now())
+
+  @@index([effectiveDate])
+}
+
+// ---------- Configurações e auditoria ----------
+
+model SystemConfig {
+  id                      Int      @id @default(1) // single-row config
+  defaultMonthlyFee       Decimal  @default(110.00) @db.Decimal(10, 2)
+  defaultGuestFee         Decimal  @default(30.00) @db.Decimal(10, 2)
+  currentSeason           Int
+  pixKey                  String?
+  pixBeneficiaryName      String?
+  pixBankName             String?
+  pixCity                 String?
+  interIntegrationEnabled Boolean  @default(false) // liga o InterPixGateway quando viável — ver ADR-05
+  updatedAt               DateTime @updatedAt
+  updatedBy               String?
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  actor       User     @relation(fields: [actorUserId], references: [id])
+  actorUserId String
+  action      String // ex.: "mensalidade.create", "socio.status.update"
+  entityType  String
+  entityId    String?
+  metadata    Json? // dado mínimo (RSP9) — nunca duplicar PII/dado sensível aqui
+  createdAt   DateTime @default(now())
+
+  @@index([actorUserId])
+  @@index([entityType, entityId])
+}

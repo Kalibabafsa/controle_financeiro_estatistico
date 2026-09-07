@@ -56,9 +56,9 @@
 | Fase | Comando | Status | Artefato |
 |---|---|---|---|
 | Planejamento | `/planejar` | concluído | `docs/planning/prd.md` (mapa funcional + inventário de telas) |
-| Prototipagem | `/prototipar` | em andamento | `prototipo/*.html` + `docs/design-system.md` |
-| Arquitetura | `/arquitetar` | pendente | `docs/planning/architecture.md` |
-| Desenvolvimento | `/desenvolver` | pendente | código em `frontend/`, `backend/` |
+| Prototipagem | `/prototipar` | concluído | `prototipo/*.html` (26 telas) + `docs/design-system.md` |
+| Arquitetura | `/arquitetar` | concluído | `docs/planning/architecture.md` (schema Prisma, contratos de API, ADRs) |
+| Desenvolvimento | `/desenvolver` | concluído (v1) | backend completo (56 endpoints, camadas, schema v001) + frontend completo (26 telas) em `frontend/`, `backend/` — ver `docs/database/current.md` |
 | Revisão | `/revisar` | pendente | `docs/planning/code-review.md` |
 | Segurança | `/seguranca` | pendente | `docs/planning/security-report.md` |
 | QA | `/testar` | pendente | `docs/planning/qa-report.md` |

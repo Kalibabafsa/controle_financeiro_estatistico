@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gestão do Baba do Dia · Sistema Kalibaba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 50: '#EAF0F5', 100: '#CBDCE8', 200: '#9CB9D0', 400: '#1E4E77', 500: '#123A5C', 600: '#0A2540', 700: '#081D33', 900: '#051220' },
+          teal: { 50: '#E6F7F5', 100: '#C0EDE9', 200: '#8EDDD6', 400: '#2BC2B7', 500: '#1AA79E', 600: '#158D85', 700: '#0F6E68' },
+          sun: { 50: '#FEF6E7', 100: '#FCE8C2', 300: '#F6C868', 400: '#F2B441', 500: '#E8A33D' },
+        },
+        fontFamily: { display: ['Poppins', 'sans-serif'], sans: ['Inter', 'sans-serif'] },
+      },
+    },
+  };
+</script>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800 antialiased">
+
+<!-- Elemento de navegação exclusivo do protótipo (não faz parte do design system) -->
+<a href="index.html" class="fixed right-4 top-4 z-[60] flex items-center gap-1 rounded-full border border-dashed border-slate-300 bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-500 shadow-sm backdrop-blur hover:text-navy-600">
+  <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i>
+  Mapa
+</a>
+
+<div class="flex min-h-screen lg:flex-row">
+
+  <!-- Sidebar (desktop) -->
+  <aside class="hidden lg:flex lg:w-72 lg:flex-shrink-0 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-slate-200 lg:bg-white lg:px-5 lg:py-6">
+    <div class="flex items-center gap-2 px-2">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-600 text-lg">⚽</div>
+      <div>
+        <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        <p class="text-[11px] uppercase tracking-wide text-slate-400">Painel do diretor</p>
+      </div>
+    </div>
+
+    <nav class="mt-8 flex flex-1 flex-col gap-5">
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+        <a href="dashboard-financeiro.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
+          Dashboard Financeiro
+        </a>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+        <div class="flex flex-col gap-1">
+          <a href="lancamento-mensalidade.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="credit-card" class="h-5 w-5"></i>
+            Lançamento de Mensalidades
+          </a>
+          <a href="lancamento-convidado.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="banknote" class="h-5 w-5"></i>
+            Pagamento de Convidado
+          </a>
+          <a href="despesas.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="receipt" class="h-5 w-5"></i>
+            Gestão de Despesas
+          </a>
+          <a href="categorias.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="tags" class="h-5 w-5"></i>
+            Gestão de Categorias
+          </a>
+          <a href="inadimplencia.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-x" class="h-5 w-5"></i>
+            Gestão de Inadimplência
+          </a>
+          <a href="prestacao-contas-geracao.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Prestação de Contas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+        <div class="flex flex-col gap-1">
+          <a href="socios-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="users" class="h-5 w-5"></i>
+            Sócios
+          </a>
+          <a href="convidados-lista.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="user-plus" class="h-5 w-5"></i>
+            Convidados
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+        <div class="flex flex-col gap-1">
+          <a href="baba-dia.html" class="flex items-center gap-3 rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">
+            <i data-lucide="calendar" class="h-5 w-5"></i>
+            Baba do Dia
+          </a>
+          <a href="sorteio-times.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shuffle" class="h-5 w-5"></i>
+            Sorteio de Times
+          </a>
+          <a href="gols-cartoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="clipboard-list" class="h-5 w-5"></i>
+            Gols e Cartões
+          </a>
+          <a href="suspensoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+            <i data-lucide="shield-alert" class="h-5 w-5"></i>
+            Suspensões Ativas
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-1.5 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+        <a href="configuracoes.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-500 hover:bg-slate-50 hover:text-navy-600">
+          <i data-lucide="settings" class="h-5 w-5"></i>
+          Configurações Gerais
+        </a>
+      </div>
+    </nav>
+
+    <a href="login.html" class="mt-6 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 hover:bg-red-50 hover:text-red-600">
+      <i data-lucide="log-out" class="h-5 w-5"></i>
+      Sair
+    </a>
+  </aside>
+
+  <div class="flex-1 pb-24 lg:pb-8">
+
+    <!-- Top bar mobile -->
+    <header class="sticky top-0 z-40 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur lg:hidden">
+      <button id="menu-toggle" aria-label="Abrir menu" class="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 hover:bg-slate-100">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+      </button>
+      <span class="font-display text-sm font-bold text-navy-600">Baba do Dia</span>
+      <span class="h-9 w-9"></span>
+    </header>
+
+    <!-- Top bar desktop -->
+    <header class="hidden items-center justify-between border-b border-slate-200 bg-white px-8 py-5 lg:flex">
+      <div>
+        <p class="text-xs font-medium uppercase tracking-wide text-slate-400">Futebol</p>
+        <h1 class="font-display text-xl font-bold text-navy-600">Gestão do Baba do Dia</h1>
+      </div>
+      <div class="flex h-9 w-9 items-center justify-center rounded-full bg-navy-600 font-display text-xs font-bold text-white">CD</div>
+    </header>
+
+    <!-- Overlay + drawer (mobile) -->
+    <div id="drawer-overlay" class="fixed inset-0 z-50 hidden bg-slate-900/40 lg:hidden"></div>
+    <aside id="drawer" class="fixed inset-y-0 left-0 z-[55] w-72 -translate-x-full overflow-y-auto bg-white shadow-xl transition-transform duration-200 ease-out lg:hidden">
+      <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+        <div class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-600 text-base">⚽</div>
+          <p class="font-display text-sm font-extrabold text-navy-600">KALI BABA</p>
+        </div>
+        <button id="drawer-close" aria-label="Fechar menu" class="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100">
+          <i data-lucide="x" class="h-5 w-5"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 px-3 py-4">
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Visão geral</p>
+          <a href="dashboard-financeiro.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Dashboard Financeiro</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Financeiro</p>
+          <a href="lancamento-mensalidade.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Lançamento de Mensalidades</a>
+          <a href="lancamento-convidado.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Pagamento de Convidado</a>
+          <a href="despesas.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Despesas</a>
+          <a href="categorias.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Categorias</a>
+          <a href="inadimplencia.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gestão de Inadimplência</a>
+          <a href="prestacao-contas-geracao.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Prestação de Contas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Associados</p>
+          <a href="socios-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sócios</a>
+          <a href="convidados-lista.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Convidados</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Futebol</p>
+          <a href="baba-dia.html" class="block rounded-xl bg-navy-50 px-3 py-2.5 text-sm font-semibold text-navy-600">Baba do Dia</a>
+          <a href="sorteio-times.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Sorteio de Times</a>
+          <a href="gols-cartoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Gols e Cartões</a>
+          <a href="suspensoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Suspensões Ativas</a>
+        </div>
+        <div>
+          <p class="mb-1 px-3 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Configurações</p>
+          <a href="configuracoes.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50">Configurações Gerais</a>
+        </div>
+        <div class="mt-2 border-t border-slate-100 pt-3">
+          <a href="login.html" class="block rounded-xl px-3 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50">Sair</a>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="mx-auto max-w-4xl px-4 py-5 lg:px-8 lg:py-8">
+
+      <!-- Dados do baba -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="font-display text-sm font-semibold text-slate-700">Dados do baba</p>
+        <div class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div>
+            <label for="data" class="mb-1.5 block text-sm font-medium text-slate-700">Data (domingo)</label>
+            <input id="data" type="date" value="2026-08-30" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div>
+            <label for="horario" class="mb-1.5 block text-sm font-medium text-slate-700">Horário</label>
+            <input id="horario" type="time" value="08:00" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+          <div>
+            <label for="local" class="mb-1.5 block text-sm font-medium text-slate-700">Local</label>
+            <input id="local" type="text" value="Quadra da Associação Kalibaba" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo de presença -->
+      <div class="mt-4 grid grid-cols-3 gap-3">
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+          <p id="count-presentes" class="font-display text-xl font-bold text-navy-600">14</p>
+          <p class="mt-0.5 text-[11px] text-slate-500">Presentes</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+          <p id="count-goleiros" class="font-display text-xl font-bold text-teal-600">3</p>
+          <p class="mt-0.5 text-[11px] text-slate-500">Goleiros presentes</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+          <p class="font-display text-xl font-bold text-sun-500">1</p>
+          <p class="mt-0.5 text-[11px] text-slate-500">Suspenso (bloqueado)</p>
+        </div>
+      </div>
+
+      <!-- Lista de presença -->
+      <div class="mt-4 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <div class="border-b border-slate-100 px-5 py-4">
+          <p class="font-display text-sm font-semibold text-slate-700">Lista de presença</p>
+          <div class="relative mt-3">
+            <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+              <i data-lucide="search" class="h-4 w-4"></i>
+            </span>
+            <input type="text" placeholder="Buscar sócio ou convidado..." class="w-full rounded-xl border border-slate-300 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-800 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+          </div>
+        </div>
+
+        <div id="lista-presenca" class="divide-y divide-slate-100">
+          <!-- Sócio presente, goleiro -->
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">MV</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Marcos Vinícius</p>
+              <p class="text-xs text-slate-400">Sócio · Goleiro</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">JP</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">João Pedro</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">BC</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Bruno Costa</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">DR</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Diego Ramos</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">TN</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Thiago Nunes</p>
+              <p class="text-xs text-slate-400">Sócio · Goleiro</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">CE</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Carlos Eduardo</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">VR</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Vinícius Rocha</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">EP</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Eduardo Prado</p>
+              <p class="text-xs text-slate-400">Sócio · Goleiro</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">FM</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Fernando Melo</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">RC</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Rodrigo Castro</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 px-5 py-3 hover:bg-slate-50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-navy-100 font-display text-xs font-bold text-navy-600">PH</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Paulo Henrique</p>
+              <p class="text-xs text-slate-400">Sócio · Linha</p>
+            </div>
+          </label>
+
+          <!-- Sócio suspenso (bloqueado, com override) -->
+          <div class="flex items-center gap-3 bg-red-50/50 px-5 py-3">
+            <input type="checkbox" disabled id="override-check" class="h-4 w-4 rounded border-slate-300 text-red-400" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-red-100 font-display text-xs font-bold text-red-500">DM</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-500">Daniel Moreira</p>
+              <p class="flex items-center gap-1 text-xs text-red-500">
+                <i data-lucide="shield-alert" class="h-3 w-3"></i>
+                Suspenso (cartão vermelho em 23/08/2026)
+              </p>
+            </div>
+            <button id="override-btn" class="flex-shrink-0 rounded-full border border-red-200 px-2.5 py-1 text-[11px] font-semibold text-red-600 hover:bg-red-50">
+              Liberar mesmo assim
+            </button>
+          </div>
+
+          <!-- Convidados -->
+          <label class="flex items-center gap-3 bg-sun-50/30 px-5 py-3 hover:bg-sun-50/50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-sun-50 font-display text-xs font-bold text-sun-500">MA</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Marcelo Andrade</p>
+              <p class="text-xs text-slate-400">Convidado por João Pedro · Linha</p>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 bg-sun-50/30 px-5 py-3 hover:bg-sun-50/50">
+            <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+            <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-sun-50 font-display text-xs font-bold text-sun-500">AL</div>
+            <div class="min-w-0 flex-1">
+              <p class="truncate text-sm font-medium text-slate-800">Anderson Lima</p>
+              <p class="text-xs text-slate-400">Convidado por Bruno Costa · Linha</p>
+            </div>
+          </label>
+        </div>
+
+        <!-- Adicionar convidado rapidamente -->
+        <div class="border-t border-slate-100 p-4">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Adicionar convidado ao baba de hoje</p>
+          <div class="flex flex-col gap-2 sm:flex-row">
+            <input id="novo-convidado-nome" type="text" placeholder="Nome do convidado" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30" />
+            <select id="novo-convidado-por" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-800 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500/30 sm:w-56">
+              <option value="">Convidado por (opcional)</option>
+              <option>João Pedro</option>
+              <option>Rafael Silva</option>
+              <option>Fernando Melo</option>
+            </select>
+            <button id="add-convidado-btn" type="button" class="flex flex-shrink-0 items-center justify-center gap-1.5 rounded-xl bg-navy-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-navy-700">
+              <i data-lucide="plus" class="h-4 w-4"></i>
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+        <button type="button" class="flex items-center justify-center rounded-full border border-slate-300 px-6 py-2.5 font-display text-sm font-semibold text-slate-600 hover:bg-slate-50">
+          Salvar presença
+        </button>
+        <a href="sorteio-times.html" class="flex items-center justify-center gap-2 rounded-full bg-navy-600 px-6 py-2.5 font-display text-sm font-semibold text-white hover:bg-navy-700">
+          <i data-lucide="shuffle" class="h-4 w-4"></i>
+          Ir para Sorteio de Times
+        </a>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const drawerClose = document.getElementById('drawer-close');
+  const drawer = document.getElementById('drawer');
+  const drawerOverlay = document.getElementById('drawer-overlay');
+  function openDrawer() { drawer.classList.remove('-translate-x-full'); drawerOverlay.classList.remove('hidden'); }
+  function closeDrawer() { drawer.classList.add('-translate-x-full'); drawerOverlay.classList.add('hidden'); }
+  menuToggle.addEventListener('click', openDrawer);
+  drawerClose.addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+
+  // Contagem de presentes/goleiros
+  function updateCounts() {
+    const checks = document.querySelectorAll('.presenca-check');
+    let presentes = 0;
+    checks.forEach((c) => { if (c.checked) presentes++; });
+    document.getElementById('count-presentes').textContent = presentes;
+  }
+  document.querySelectorAll('.presenca-check').forEach((c) => c.addEventListener('change', updateCounts));
+
+  // Override de suspensão (RF30)
+  document.getElementById('override-btn').addEventListener('click', function () {
+    const checkbox = document.getElementById('override-check');
+    checkbox.disabled = false;
+    checkbox.checked = true;
+    checkbox.classList.add('presenca-check', 'text-teal-600');
+    this.textContent = 'Liberado (override)';
+    this.disabled = true;
+    this.className = 'flex-shrink-0 rounded-full border border-teal-200 bg-teal-50 px-2.5 py-1 text-[11px] font-semibold text-teal-700';
+    checkbox.addEventListener('change', updateCounts);
+    updateCounts();
+  });
+
+  // Adicionar convidado ao baba (demonstração)
+  document.getElementById('add-convidado-btn').addEventListener('click', () => {
+    const nomeInput = document.getElementById('novo-convidado-nome');
+    const porSelect = document.getElementById('novo-convidado-por');
+    const nome = nomeInput.value.trim();
+    if (!nome) return;
+    const iniciais = nome.split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+    const por = porSelect.value ? `Convidado por ${porSelect.value}` : 'Convidado';
+    const lista = document.getElementById('lista-presenca');
+    const row = document.createElement('label');
+    row.className = 'flex items-center gap-3 bg-sun-50/30 px-5 py-3 hover:bg-sun-50/50';
+    row.innerHTML = `
+      <input type="checkbox" checked class="presenca-check h-4 w-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500/40" />
+      <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-sun-50 font-display text-xs font-bold text-sun-500">${iniciais}</div>
+      <div class="min-w-0 flex-1">
+        <p class="truncate text-sm font-medium text-slate-800">${nome}</p>
+        <p class="text-xs text-slate-400">${por} · Linha</p>
+      </div>`;
+    lista.appendChild(row);
+    row.querySelector('.presenca-check').addEventListener('change', updateCounts);
+    nomeInput.value = '';
+    porSelect.value = '';
+    updateCounts();
+  });
+
+  updateCounts();
+</script>
+
+</body>
+</html>
